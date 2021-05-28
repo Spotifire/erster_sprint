@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common'; // NgIf, NgForOf..
+import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { PlaylistComponent } from './playlist/playlist.component';
@@ -9,6 +10,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { PlaybarComponent } from './playbar/playbar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SongItemComponent } from './playlist/song-list/song-item/song-item.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +20,14 @@ import { SongItemComponent } from './playlist/song-list/song-item/song-item.comp
     SidebarComponent,
     PlaybarComponent,
     NavbarComponent,
-    SongItemComponent
+    SongItemComponent,
+    SearchComponent
 
   ],
   imports: [
     BrowserModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
