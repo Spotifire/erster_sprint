@@ -9,6 +9,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { PlaybarComponent } from './playbar/playbar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SongItemComponent } from './playlist/song-list/song-item/song-item.component';
+import Auth from './auth/auth';
+import { DummySearchComponent } from './dummy-search/dummy-search.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +22,15 @@ import { SongItemComponent } from './playlist/song-list/song-item/song-item.comp
     SidebarComponent,
     PlaybarComponent,
     NavbarComponent,
-    SongItemComponent
-
+    DummySearchComponent,
+    SongItemComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

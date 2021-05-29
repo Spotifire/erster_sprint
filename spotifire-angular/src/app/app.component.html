@@ -1,12 +1,12 @@
 <!--
   (Component-)Container{
-    sidebar 
+    sidebar
     playbar
     search
     playlist
   }
 -->
-<div class="wrapper">
+<div *ngIf="!code" class="wrapper">
   <div class="navbar-wrapper">
     <app-navbar></app-navbar>
   </div>
@@ -19,4 +19,7 @@
   <div class="playlist-wrapper">
     <app-playlist></app-playlist>
   </div>
+</div>
+<div *ngIf="code" >
+  <app-dummy-search></app-dummy-search>
 </div>
