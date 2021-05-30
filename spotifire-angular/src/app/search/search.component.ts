@@ -13,7 +13,7 @@ export class SearchComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   searchMusic(){
-    this.spotifyService.searchMusic(this.searchStr);
+    this.spotifyService.searchValueChanged(this.searchStr);
   }
 
   constructor(private spotifyService: SpotifyService) { }

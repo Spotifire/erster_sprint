@@ -12,10 +12,12 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { PlaybarComponent } from './playbar/playbar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SongItemComponent } from './playlist/song-list/song-item/song-item.component';
+import Auth from './auth/auth';
 import { SearchComponent } from './search/search.component';
 import { LibraryComponent } from './library/library.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PlaylistOverviewComponent } from './sidebar/playlist-overview/playlist-overview.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +30,8 @@ import { PlaylistOverviewComponent } from './sidebar/playlist-overview/playlist-
     SongItemComponent,
     SearchComponent,
     LibraryComponent,
-    PlaylistOverviewComponent
-
+    PlaylistOverviewComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

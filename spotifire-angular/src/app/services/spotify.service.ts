@@ -1,32 +1,51 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import {Injectable,Input} from '@angular/core';
+import SpotifyWebApi from "spotify-web-api-node";
+import Auth from "../auth/auth";
 
 
 @Injectable()
 export class SpotifyService{
-    private searchUrl: string;
-    private artistUrl: string;
-    private albumsUrl: string;
-    private albumUrl: string;
+  @Input() code: string;
+  @Input() auth: Auth;
 
-    constructor(private http: HttpClient){
+  accessToken
+  testAuth
+
+  constructor(){
+    
+  }
+
+  ngOnInit() {
+    this.accessToken = this.auth.getAuth(this.code);
+  }
+
+
+
+  searchValueChanged(str: string){
+    this.accessToken = localStorage.getItem("accessToken");
+    console.log(localStorage.getItem("accessToken"));
+    this.searchMusic(str);
+  }
+
+  searchMusic(str: string){
+    let spotifyApi = new SpotifyWebApi({
+      clientId: "454d352b3fd84985bea141355d73c17b",
+    })
+
+    if (!this.accessToken) {
+      console.error("No viable Access Token.");
+      return
     }
+    spotifyApi.setAccessToken(this.accessToken)
 
-    // tslint:disable-next-line: typedef
-    searchMusic(str: string, type= 'artist'){
-        this.http.get('https://api.spotify.com/v1/search?query=' + str + '&offset=0&limit=20&type=' + type + '&market=US')
-        .pipe(map(data => {})).subscribe(result => {
-          console.log(result);
-        });
-    }
+    spotifyApi.searchTracks(str).then((res : any) => {
 
-    // tslint:disable-next-line: typedef
-    getMyPlaylists(){
-      this.http.get('https://api.spotify.com/v1/me/playlists')
-      .pipe(map(data => {})).subscribe(result => {
-        console.log(result);
-      });
+      console.log(res)
+    }).catch((err : any) => {
+
+      console.log(err)
+    })
+    
   }
 }
 
