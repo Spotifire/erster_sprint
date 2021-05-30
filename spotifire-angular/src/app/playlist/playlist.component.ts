@@ -26,10 +26,10 @@ export class PlaylistComponent implements OnInit {
             - limit: Int
             - next: String (Url o next page of items)
             - offset: Int
-            - previous 
+            - previous
             - total
 
-        - simplified playlist object 
+        - simplified playlist object
             - name: String
             - owner: PublicUserObject
             - public: boolean
@@ -86,7 +86,7 @@ export class PlaylistComponent implements OnInit {
     
         - CURRENT USER: GET https://api.spotify.com/v1/me/playlists
         - A USER: GET https://api.spotify.com/v1/users/{user_id}/playlists // Spotify User ID 
-        -  Response: Simplified Playlist Object, wrapped in paging object, in JSON format 
+        -  Response: []Simplified Playlist Object, wrapped in paging object, in JSON format 
             
 
     - CREATE NEW PLAYLIST 

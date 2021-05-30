@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import {SpotifyService} from '../services/spotify.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
+
 export class SearchComponent implements OnInit {
 
-  searchStr: String;
+  searchStr;
 
+  // tslint:disable-next-line: typedef
   searchMusic(){
-    console.log(this.searchStr)
+    this.spotifyService.searchMusic(this.searchStr);
   }
 
-  constructor() { }
+  constructor(private spotifyService: SpotifyService) { }
 
   ngOnInit(): void {
   }

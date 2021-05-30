@@ -1,0 +1,9 @@
+<div class="library-wrapper">
+    <div class="grid-wrapper">
+        <div class="box" *ngFor='let playlist of playlists'>
+            <div id="cover"><img title={{playlist.cover}}></div>
+            <div id="name"><h2>{{playlist.name}}</h2></div>
+            <div id="creator"><p>{{playlist.creator}}</p></div>
+        </div>
+    </div>
+</div>
