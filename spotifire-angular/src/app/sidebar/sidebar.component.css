@@ -121,8 +121,6 @@ a{
     text-decoration: none;
     color: white;
 }
-a:hover{
+.tab:hover{
     color: #1DB954;
 }
-
-

@@ -11,18 +11,6 @@
     
 }
 
-.grid-wrapper{
-    width: 75%;
-    height: 100%;
-    padding-left: 2vh;
-    padding-top: 2vh;
-    position:absolute;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 5vh;
-    grid-auto-rows: 25vh;
-}
-
 .box{
     position: relative;
     background-color: #181818;
@@ -58,7 +46,6 @@
 }
 
 
-
 #creator{
     position: absolute;
     top: 21.5vh;
@@ -69,4 +56,17 @@
     padding-left: 1vh;
     color: white;
     font-size: 1.8vh;
+}
+
+a{
+    width: 75%;
+    height: 100%;
+    padding-left: 2vh;
+    padding-top: 2vh;
+    position:absolute;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5vh;
+    grid-auto-rows: 25vh;           
+    
 }

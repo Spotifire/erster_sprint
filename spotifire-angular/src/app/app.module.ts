@@ -34,7 +34,7 @@ import { AppRoutingModule } from './app-routing.module';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [SpotifyService],
   bootstrap: [AppComponent]
