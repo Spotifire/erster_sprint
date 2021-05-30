@@ -67,6 +67,6 @@ a{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 5vh;
-    grid-auto-rows: 25vh;           
+    grid-auto-rows: 27vh;           
     
 }

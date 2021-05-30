@@ -15,6 +15,7 @@ import { SongItemComponent } from './playlist/song-list/song-item/song-item.comp
 import { SearchComponent } from './search/search.component';
 import { LibraryComponent } from './library/library.component';
 import { AppRoutingModule } from './app-routing.module';
+import { PlaylistOverviewComponent } from './sidebar/playlist-overview/playlist-overview.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AppRoutingModule } from './app-routing.module';
     NavbarComponent,
     SongItemComponent,
     SearchComponent,
-    LibraryComponent
+    LibraryComponent,
+    PlaylistOverviewComponent
 
   ],
   imports: [

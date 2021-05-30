@@ -124,3 +124,12 @@ a{
 .tab:hover{
     color: #1DB954;
 }
+
+.playlists-wrapper{
+    position: absolute;
+    width: 90%;
+    height: 40vh;
+    left: 5%;
+    top:55%;
+    overflow: auto;
+}
