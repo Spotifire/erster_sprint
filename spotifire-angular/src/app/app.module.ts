@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SongItemComponent } from './playlist/song-list/song-item/song-item.component';
 import { SearchComponent } from './search/search.component';
 import { LibraryComponent } from './library/library.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { LibraryComponent } from './library/library.component';
     BrowserModule,
     CommonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [SpotifyService],
   bootstrap: [AppComponent]
