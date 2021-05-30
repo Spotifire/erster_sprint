@@ -1,67 +1,54 @@
 import axios from 'axios';
 
 
-let code;
-
-let accessToken;
-let refreshToken
-let expiresIn
-
-function setAccessToken(newAccessToken){
-  accessToken = newAccessToken;
-}
-
-export default function Auth(sentCode) {
-  let codeChanged;
-  let tokenChanged;
-
-  let newRefreshToken;
-  let newExpiresIn;
-
-  codeChanged = sentCode == code;
+export default class Auth {
+  accessToken;
+  refreshToken
+  expiresIn
 
 
-  console.log(code)
-  code = sentCode;
 
-  if (codeChanged && sentCode) {
-    //console.log(sentCode)
-    axios.post('http://localhost:4201/login', {
-      code: sentCode,
-    }).then(res => {
-      accessToken = res.data.accessToken;
-      newRefreshToken = res.data.refreshToken;
-      newExpiresIn = res.data.expiresIn;
 
-      tokenChanged = refreshToken != newRefreshToken || expiresIn != newExpiresIn;
+  getAuth(sentCode) {
+    let codeChanged = sentCode != localStorage.getItem("code");
 
-      if (tokenChanged){
-        refreshToken = newRefreshToken;
-        expiresIn = newExpiresIn;
-      }
+    localStorage.setItem("code", sentCode);
 
-      //window.history.pushState({}, null, '/')
-      console.log(res.data)
-
-    }).catch((err: any) => {
-      // @ts-ignore
-      //window.location = '/';
-    })
-
-    if (tokenChanged){
-      axios.post('http://localhost:4201/refresh', {
-        refreshToken,
+    if (codeChanged) {
+      axios.post('http://localhost:4201/login', {
+        code: sentCode,
       }).then(res => {
-        refreshToken = res.data.refreshToken;
-        expiresIn = res.data.expiresIn;
+        this.accessToken = res.data.accessToken;
+        this.refreshToken = res.data.refreshToken;
+        this.expiresIn = res.data.expiresIn;
+
+        localStorage.setItem("accessToken", this.accessToken)
 
         //window.history.pushState({}, null, '/')
         console.log(res.data)
+
       }).catch((err: any) => {
         // @ts-ignore
         window.location = '/';
       })
     }
+    /*if (this.refreshToken && this.expiresIn) {
+      const interval = setInterval(() => {
+        axios
+          .post("http://localhost:3001/refresh", {
+            refreshToken,
+          })
+          .then(res => {
+            this.accessToken = res.data.accessToken
+            this.expiresIn = res.data.expiresIn
+          })
+          .catch(() => {
+            // @ts-ignore
+            window.location = "/"
+          })
+      }, (this.expiresIn - 60) * 1000)
+
+      return () => clearInterval(interval)
+    }*/
   }
-  return accessToken;
 }

@@ -32,7 +32,8 @@ app.post('/refresh', (req : any, res : any) => {
   const spotifyApi = new SpotifyWebApi({
     redirectUri: 'http://localhost:4200',
     clientId: '454d352b3fd84985bea141355d73c17b',
-    clientSecret: '23866bfe7ef8402691cac92307233686'
+    clientSecret: '23866bfe7ef8402691cac92307233686',
+    refreshToken
   })
 
   spotifyApi.refreshAccessToken().then(

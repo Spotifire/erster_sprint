@@ -11,7 +11,6 @@ import Auth from "./auth/auth";
 
 export class AppComponent {
   code = new URLSearchParams(window.location.search).get('code');
+  auth = new Auth();
   title = 'spotifire-angular';
-
-  auth = Auth(this.code);
 }
