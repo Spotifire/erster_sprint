@@ -25,6 +25,7 @@ export default class Auth {
         this.expiresIn = res.data.expiresIn;
 
         localStorage.setItem("accessToken", this.accessToken)
+        localStorage.setItem("refreshToken", this.refreshToken)
 
         //window.history.pushState({}, null, '/')
         console.log(res.data)
@@ -34,23 +35,26 @@ export default class Auth {
         window.location = '/';
       })
     }
-    /*if (this.refreshToken && this.expiresIn) {
-      const interval = setInterval(() => {
-        axios
-          .post("http://localhost:3001/refresh", {
-            refreshToken,
-          })
-          .then(res => {
-            this.accessToken = res.data.accessToken
-            this.expiresIn = res.data.expiresIn
-          })
-          .catch(() => {
-            // @ts-ignore
-            window.location = "/"
-          })
-      }, (this.expiresIn - 60) * 1000)
+  }
 
-      return () => clearInterval(interval)
-    }*/
+  refresh(){
+    let refreshToken = localStorage.getItem("refreshToken");
+
+    axios
+      .post("http://localhost:3001/refresh", {
+        refreshToken,
+      })
+      .then(res => {
+        this.accessToken = res.data.accessToken
+        this.expiresIn = res.data.expiresIn
+
+        console.log(true)
+
+        localStorage.setItem("accessToken", this.accessToken)
+      })
+      .catch(() => {
+        // @ts-ignore
+        window.location = "/"
+      })
   }
 }

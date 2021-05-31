@@ -1,24 +1,28 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import SpotifyWebApi from 'spotify-web-api-node';
 import Auth from '../auth/auth';
 
 @Injectable()
 export class SpotifyService {
-  @Input() code: string;
-  @Input() auth: Auth;
+ //ts-ignore
+ code: string = new URLSearchParams(window.location.search).get('code');
+ auth: Auth = new Auth();
 
-  accessToken;
+ accessToken = localStorage.getItem("accessToken");
 
   constructor() {}
 
   ngOnInit() {
-    this.accessToken = this.auth.getAuth(this.code);
+  }
+
+  login(){
+    this.auth.getAuth(this.code)
   }
 
   searchValueChanged(str: string) {
     this.accessToken = localStorage.getItem('accessToken');
 
-    this.searchMusic(str);
+    if (str != "") this.searchMusic(str);
   }
 
   searchMusic(str: string) {
@@ -38,6 +42,8 @@ export class SpotifyService {
         console.log(res);
       })
       .catch((err: any) => {
+        this.auth.refresh()
+
         console.log(err);
       });
   }
@@ -61,6 +67,8 @@ export class SpotifyService {
         console.log(res);
       })
       .catch((err: any) => {
+        this.auth.refresh()
+
         console.log(err);
       });
   }
