@@ -23,6 +23,7 @@ export default class Auth {
         this.expiresIn = res.data.expiresIn;
 
         localStorage.setItem("accessToken", this.accessToken)
+        localStorage.setItem("refreshToken", this.refreshToken)
 
         //window.history.pushState({}, null, '/')
         console.log(res.data)
