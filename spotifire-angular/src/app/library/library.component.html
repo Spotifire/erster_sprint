@@ -1,7 +1,7 @@
 <div class="library-wrapper">
         <a href="playlist">
             <div class="box" *ngFor='let playlist of playlists'>
-                <div id="cover"><img title={{playlist.cover}}></div>
+                <div id="cover"><img src="{{playlist.cover}}" ></div>
                 <div id="name"><h2>{{playlist.name}}</h2></div>
                 <div id="creator"><p>{{playlist.creator}}</p></div>
             </div>

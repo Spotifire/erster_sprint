@@ -21,6 +21,6 @@ export class PlaylistOverviewComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.spotifyService.getUserPlaylists();
+    this.spotifyService.setLibraryPlaylists(this);
   }
 }

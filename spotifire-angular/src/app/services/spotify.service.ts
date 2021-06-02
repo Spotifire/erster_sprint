@@ -5,7 +5,7 @@ import Auth from '../auth/auth';
 @Injectable()
 export class SpotifyService {
  //ts-ignore
- code: string = new URLSearchParams(window.location.search).get('code');
+
  auth: Auth = new Auth();
 
  accessToken = localStorage.getItem("accessToken");
@@ -15,8 +15,8 @@ export class SpotifyService {
   ngOnInit() {
   }
 
-  login(){
-    this.auth.getAuth(this.code)
+  login(code){
+    this.auth.getAuth(code)
   }
 
   searchValueChanged(str: string) {
@@ -48,7 +48,7 @@ export class SpotifyService {
       });
   }
 
-  getUserPlaylists() {
+  setLibraryPlaylists(library): Array<any> {
     this.accessToken = localStorage.getItem('accessToken');
 
     let spotifyApi = new SpotifyWebApi({
@@ -65,6 +65,20 @@ export class SpotifyService {
       .getMe()
       .then((res: any) => {
         console.log(res);
+
+        let userId = res.body.id;
+        spotifyApi
+          .getUserPlaylists(userId).then((res : any) => {
+          console.log(res)
+
+            let resArray: Array <{name: String, creator: String, cover:String}> = new Array<{name: String; creator: String; cover: String}>
+              (res.body.items.length);
+
+          for (let i = 0; i < res.body.items.length; i++){
+            resArray[i] = {name: res.body.items[i].name, creator: res.body.items[i].owner.display_name, cover: res.body.items[i].images[0].url};
+          }
+          library.playlists = resArray;
+        })
       })
       .catch((err: any) => {
         this.auth.refresh()

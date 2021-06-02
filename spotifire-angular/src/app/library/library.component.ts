@@ -8,9 +8,12 @@ import {SpotifyService} from '../services/spotify.service';
   styleUrls: ['./library.component.css']
 })
 export class LibraryComponent implements OnInit {
+  spotifyService: SpotifyService = new SpotifyService();
 
 // tslint:disable-next-line: ban-types
-playlists: Array<{name: String, creator: String, cover: String}> = [
+playlists: Array<{name: String, creator: String, cover: String}>;
+  /*this.spotifyService.getUserPlaylists();
+  [
     {name: 'NAME', creator: 'Creator', cover: 'COVER'},
     {name: 'NAME', creator: 'Creator', cover: 'COVER'},
     {name: 'NAME', creator: 'Creator', cover: 'COVER'},
@@ -35,11 +38,11 @@ playlists: Array<{name: String, creator: String, cover: String}> = [
     {name: 'NAME', creator: 'Creator', cover: 'COVER'},
     {name: 'NAME', creator: 'Creator', cover: 'COVER'},
     {name: 'NAME', creator: 'Creator', cover: 'COVER'},
-   
-];
+
+];*/
 
 constructor(private spotifyservice: SpotifyService){
-
+  spotifyservice.setLibraryPlaylists(this);
 }
 
 ngOnInit(): void {
