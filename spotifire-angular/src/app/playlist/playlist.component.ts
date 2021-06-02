@@ -1,15 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+import {SongListComponent} from "./song-list/song-list.component";
+import {SpotifyService} from "../services/spotify.service";
 
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.component.html',
   styleUrls: ['./playlist.component.css']
 })
-export class PlaylistComponent implements OnInit {
 
-  constructor() { }
+@Injectable()
+
+export class PlaylistComponent implements OnInit {
+  playListName: String;
+  playlistCover: String;
+  songList: SongListComponent;
+  spotifyService = new SpotifyService();
+
+  constructor(private route : ActivatedRoute) { }
 
   ngOnInit(): void {
+    let playliestId;
+    this.route.paramMap.subscribe((params => {
+      playliestId = params.get('id')
+    }))
+
+    console.log(playliestId)
+
+    this.songList = new SongListComponent();
+
+    this.spotifyService.setSongList(this, playliestId)
+  }
+
+  play(){
+    this.spotifyService.shufflePlaylist(this.playlistCover);
   }
 
   // edit playlist etc..
@@ -34,21 +58,21 @@ export class PlaylistComponent implements OnInit {
             - owner: PublicUserObject
             - public: boolean
             - snapshot_id: String
-            - tracks: PlaylistTracksRefObject 
+            - tracks: PlaylistTracksRefObject
             - type: String
-            - uri: String 
+            - uri: String
             - collabrotaive: Boolean
-            - description: String 
+            - description: String
             - id: String
             - images: Array[ImageObject]
-        
+
         - track object
             - artists: Array[SimplifiedArtistObject]
             - availabe_markets: Array[String]
             - disc_number: Int
             - duration_ms: Int
             - explicit : Boolean
-            - external_urls: ExternalUrlObject 
+            - external_urls: ExternalUrlObject
             - href: String
             - id: String
             - is_local: Boolean
@@ -56,14 +80,14 @@ export class PlaylistComponent implements OnInit {
             - linked_from: LinkedTrackObject
             - name: String
             - preview_url: String
-            - restrictions: TrackRestrictionsbject 
+            - restrictions: TrackRestrictionsbject
             - track_number: Int
             - type: String
-            - uri: String 
+            - uri: String
 
-        - episode object 
+        - episode object
             - audio_preview_url: String
-            - description: String   
+            - description: String
             - explicit: Integer
             - href: ExternalUrlObject
             - html_description: String
@@ -83,37 +107,37 @@ export class PlaylistComponent implements OnInit {
 
 
     - GET PLAYLIST LIST
-    
+
         - CURRENT USER: GET https://api.spotify.com/v1/me/playlists
-        - A USER: GET https://api.spotify.com/v1/users/{user_id}/playlists // Spotify User ID 
-        -  Response: []Simplified Playlist Object, wrapped in paging object, in JSON format 
-            
+        - A USER: GET https://api.spotify.com/v1/users/{user_id}/playlists // Spotify User ID
+        -  Response: []Simplified Playlist Object, wrapped in paging object, in JSON format
 
-    - CREATE NEW PLAYLIST 
 
-        - POST https://api.spotify.com/v1/me/playlists ? 
+    - CREATE NEW PLAYLIST
+
+        - POST https://api.spotify.com/v1/me/playlists ?
         - POST https://api.spotify.com/v1/users/{user_id}/playlists
         - Response: Created Playlist as simplified Playlist Object in JSON
             - (name, public, collaborative, description)
-            - empty till tracks are added 
+            - empty till tracks are added
 
 
     - GET A PLAYLIST
 
         - GET https://api.spotify.com/v1/playlists/{playlist_id}
-        - Response: PlaylistObject in JSON 
+        - Response: PlaylistObject in JSON
 
 
     - CHANGE DETAILS
-    
+
         - PUT https://api.spotify.com/v1/playlists/{playlist_id}
-        - Response: 200 OK 
+        - Response: 200 OK
 
 
     - GET PLAYLIST ITEMS
 
         - GET https://api.spotify.com/v1/playlists/{playlist_id}/tracks
-        - Response: TrackObjcts, (EpisodeObjects) 
+        - Response: TrackObjcts, (EpisodeObjects)
 
     - ADD ITEM TO PLAYLIST
 
@@ -122,7 +146,7 @@ export class PlaylistComponent implements OnInit {
 
 
     - reorder, replace items
-    - remove items 
-    - cover img 
-    
+    - remove items
+    - cover img
+
 */

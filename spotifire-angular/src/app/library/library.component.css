@@ -24,6 +24,18 @@
     cursor: pointer;
 }
 
+.playWindow{
+  width: 75%;
+  height: 100%;
+  padding-left: 2vh;
+  padding-top: 2vh;
+  position:absolute;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5vh;
+  grid-auto-rows: 27vh;
+}
+
 #cover{
     position: absolute;
     width: 16vh;
@@ -41,7 +53,8 @@
     align-items: center;
     color: white;
     padding-left: 1vh;
-    font-size: 1.6vh;
+    font-size: 1.2vh;
+    word-wrap: break-word;
 }
 
 
@@ -66,6 +79,11 @@ a{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 5vh;
-    grid-auto-rows: 27vh;           
-    
+    grid-auto-rows: 27vh;
+
+}
+
+img{
+  width: 16vh;
+  height: 16vh;
 }

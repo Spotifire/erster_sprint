@@ -6,7 +6,7 @@ import {PlaylistComponent} from './playlist/playlist.component';
 
 const appRoutes: Routes = [
   {path: '', component: LibraryComponent},
-  {path: 'playlist', component: PlaylistComponent},
+  {path: 'playlist/:id', component: PlaylistComponent},
 ];
 
 @NgModule({

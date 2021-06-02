@@ -1,18 +1,18 @@
 <div class="playlist-wrapper">
     <div class="playlist-header">
         <div id="playlist-image">
-            <img>
+            <img src="{{playlistCover}}">
         </div>
         <div id="playlist-info">
         <h2>Playlist</h2>
-        <h1>PLAYLIST NAME</h1>
+        <h1>{{playListName}}</h1>
         <h3>Creator - 13 Tracks - 8 min</h3>
         </div>
     </div>
     <div class="playlist-body">
-        <a class="playlist-shuffle-button">PLAY</a>
+        <button (click)="play()" class="playlist-shuffle-button">PLAY</button>
         <a class="playlist-edit-button"><p id="dot">..</p></a>
-        <app-song-list></app-song-list>
+        <app-song-list [songs]="songList.songs"></app-song-list>
     </div>
 </div>
 
@@ -20,10 +20,10 @@
 
 <!--
     includes:
-        playlist structure 
+        playlist structure
         songlist component (table)
-    
-    playlist name 
+
+    playlist name
     playlist information
     ..
 -->

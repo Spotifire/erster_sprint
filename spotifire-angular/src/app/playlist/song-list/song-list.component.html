@@ -8,16 +8,16 @@
             <th>Hinzugefügt am</th>
             <th>Duration</th>
         </tr>
-    </thead> 
+    </thead>
     <tbody>
         <tr *ngFor="let song of songs">
             <td id="songid">{{song.nr}}</td>
             <td id="songTitelAndAuthor">
                 <p id="songTitel">{{song.title}}</p>
-                <p id="author">{{song.author}}</p>
+                <p id="author">{{song.artist}}</p>
             </td>
             <td id="songAlbum">{{song.album}}</td>
-            <td id="songDate">{{song.hzgfgt}}</td>
+            <td id="songDate">{{song.added}}</td>
             <td id="songDuration">{{song.duration}}</td>
         </tr>
     </tbody>
@@ -28,5 +28,5 @@
 
 <!--
     table: name, artist, genre etc..
-    *ngFor  song of songs 
+    *ngFor  song of songs
 -->
