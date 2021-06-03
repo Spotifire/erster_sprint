@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlaylistOverviewComponent } from './playlist-overview.component';
+import { PodcastViewComponent } from './podcast-view.component';
 
-describe('PlaylistOverviewComponent', () => {
-  let component: PlaylistOverviewComponent;
-  let fixture: ComponentFixture<PlaylistOverviewComponent>;
+describe('PodcastViewComponent', () => {
+  let component: PodcastViewComponent;
+  let fixture: ComponentFixture<PodcastViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PlaylistOverviewComponent ]
+      declarations: [ PodcastViewComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlaylistOverviewComponent);
+    fixture = TestBed.createComponent(PodcastViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,9 @@
+<div class="playWindow">
+    <div class="box" *ngFor='let playlist of playlists' >
+      <a [routerLink]="['/playlist', playlist.id]">
+        <div id="cover"><img src="{{playlist.cover}}" ></div>
+        <div id="name"><h2>{{playlist.name}}</h2></div>
+        <div id="creator"><p>{{playlist.creator}}</p></div>
+      </a>
+</div>
+</div>

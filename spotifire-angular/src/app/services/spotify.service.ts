@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import SpotifyWebApi from 'spotify-web-api-node';
 import Auth from '../auth/auth';
-import {PlaylistComponent} from "../playlist/playlist.component";
+import {PlaylistViewComponent} from "../playlist/playlist-view/playlist-view.component";
 
 @Injectable()
 export class SpotifyService {
@@ -76,7 +76,8 @@ export class SpotifyService {
               (res.body.items.length);
 
           for (let i = 0; i < res.body.items.length; i++){
-            resArray[i] = {name: res.body.items[i].name, creator: res.body.items[i].owner.display_name, cover: res.body.items[i].images[0].url, id: res.body.items[i].id};
+            resArray[i] = {name: res.body.items[i].name, creator: res.body.items[i].owner.display_name, 
+              cover: res.body.items[i].images[0].url, id: res.body.items[i].id};
           }
           library.playlists = resArray;
         })
@@ -89,7 +90,7 @@ export class SpotifyService {
       });
   }
 
-  setSongList(playlist: PlaylistComponent, playlistId: String){
+  setSongList(playlist: PlaylistViewComponent, playlistId: String){
     this.accessToken = localStorage.getItem('accessToken');
 
     let spotifyApi = new SpotifyWebApi({

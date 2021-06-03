@@ -12,19 +12,6 @@
     <div class="playlist-body">
         <button (click)="play()" class="playlist-shuffle-button">PLAY</button>
         <a class="playlist-edit-button"><p id="dot">..</p></a>
-        <app-song-list [songs]="songList.songs"></app-song-list>
+        <app-playlist-songlist [songs]="songList.songs"></app-playlist-songlist>
     </div>
 </div>
-
-
-
-<!--
-    includes:
-        playlist structure
-        songlist component (table)
-
-    playlist name
-    playlist information
-    ..
--->
-
