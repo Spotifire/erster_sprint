@@ -1,7 +1,7 @@
 import {Component, Injectable, OnInit} from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
-import {PlaylistSonglistComponent} from "../playlist-songlist/playlist-songlist.component";
-import {SpotifyService} from "../../services/spotify.service";
+import { ActivatedRoute } from '@angular/router';
+import {PlaylistSonglistComponent} from '../playlist-songlist/playlist-songlist.component';
+import {SpotifyService} from '../../services/spotify.service';
 
 @Component({
   selector: 'app-playlist-view',
@@ -10,24 +10,24 @@ import {SpotifyService} from "../../services/spotify.service";
 })
 export class PlaylistViewComponent implements OnInit {
 
-  playListName: String;
-  playlistCover: String;
+  playListName: string;
+  playlistCover: string;
   songList: PlaylistSonglistComponent;
   spotifyService = new SpotifyService();
 
-  constructor(private route : ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    let playliestId;
+    let playlistId;
     this.route.paramMap.subscribe((params => {
-      playliestId = params.get('id')
-    }))
+      playlistId = params.get('id');
+    }));
 
-    console.log(playliestId)
+    console.log(playlistId);
 
     this.songList = new PlaylistSonglistComponent();
 
-    this.spotifyService.setSongList(this, playliestId)
+    this.spotifyService.setSongList(this, playlistId);
   }
 
   play(){

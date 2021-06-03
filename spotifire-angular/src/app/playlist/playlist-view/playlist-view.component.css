@@ -19,7 +19,7 @@
     -moz-box-shadow: inset 0px -200px 300px -62px rgba(124,124,124,1);
     box-shadow: inset 0px -200px 300px -62px rgba(124,124,124,1);
     display: flex;
-    color: rgb(171, 171, 171);
+    color: rgb(181, 181, 181);
 }
 .playlist-body{
     position: relative;
@@ -35,7 +35,7 @@
     box-shadow: inset 0px 200px 92px -92px rgba(92,92,92,1);
 }
 
-img{
+#cover{
     background-color: white;
     width: 24vh;
     height: 24vh;
@@ -63,41 +63,43 @@ h3{
     margin-top: 0px;
 }
 
-.playlist-shuffle-button{
+.play-container{
     position: absolute;
     display: flex;
     border: 1px solid white;
-    background-color: #1DB954;
     border-radius: 50%;
-    width: 8vh;
-    height: 8vh;
+    width: 6vh;
+    height: 6vh;
     margin-left: 4vh;
     align-items: center;
     text-align: center;
     justify-content: center;
-    color: white;
-    font-size: 2vh;
     cursor: pointer;
+    overflow: hidden;
+    background-color: rgba(61,212,72,255);
 }
 
-.playlist-edit-button{
+.shuffle-container{
     position: absolute;
     display: flex;
     border: 1px solid white;
-    background-color: #1DB954;
     border-radius: 50%;
     width: 5vh;
     height: 5vh;
-    margin-left: 15vh;
-    margin-top: 2vh;
+    margin-left: 13vh;
+    margin-top: 0.6vh;
     align-items: center;
     text-align: center;
     justify-content: center;
-    color: white;
-    font-size: 4vh;
     cursor: pointer;
+    overflow: hidden;
+    background-color: rgba(61,212,72,255);
 }
 
-#dot{
-    margin-top: 16px;
+#play{
+    position: absolute;
+    width: 5vh;
+    height: 5vh;
+    
 }
+
