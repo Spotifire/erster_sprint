@@ -49,14 +49,17 @@ export class SpotifyService {
       });
   }
 
-  setLibraryPlaylists(library): Array<any> {
+  async getMyPlaylists() {
     this.accessToken = localStorage.getItem('accessToken');
 
     if (!this.accessToken) {
       console.error('No viable Access Token.');
       return;
     }
-    axios
+
+    this.auth.refresh();
+
+    const myPlaylists = await axios
       .get("https://api.spotify.com/v1/me/playlists?limit=50", {
         headers: {
           'Accept': 'application/json',
@@ -64,28 +67,19 @@ export class SpotifyService {
           'Authorization': 'Bearer ' + this.accessToken
         }
       })
-      .then(res => {
 
-        console.log(res)
-        let resArray: Array <{name: String, creator: String, cover: String, id: String}> = new Array<{name: String, creator: String, cover: String, id: String}>
-        (res.data.items.length)
+    let resArray: Array <{name: String, creator: String, cover: String, id: String}> = new Array<{name: String, creator: String, cover: String, id: String}>
+    (myPlaylists.data.items.length)
 
-        for (let i = 0; i < resArray.length; i++){
-          resArray[i] = {name: res.data.items[i].name, creator: res.data.items[i].owner.display_name,
-            cover: res.data.items[i].images[0].url, id: res.data.items[i].id};
-        }
+    for (let i = 0; i < resArray.length; i++){
+      resArray[i] = {name: myPlaylists.data.items[i].name, creator: myPlaylists.data.items[i].owner.display_name,
+        cover: myPlaylists.data.items[i].images[0].url, id: myPlaylists.data.items[i].id};
+    }
 
-        library.playlists = resArray;
-      })
-      .catch((err : any) => {
-
-        this.auth.refresh();
-        this.setLibraryPlaylists(this);
-        //window.location = "/"
-      })
+    return resArray;
   }
 
-  setLibraryPodcasts(library): Array<any> {
+  async getMyPodcasts() {
     this.accessToken = localStorage.getItem('accessToken');
 
     if (!this.accessToken) {
@@ -93,7 +87,7 @@ export class SpotifyService {
       return;
     }
 
-    axios
+    const myPodcasts = await axios
       .get("https://api.spotify.com/v1/me/shows", {
         headers: {
           'Accept': 'application/json',
@@ -101,25 +95,19 @@ export class SpotifyService {
           'Authorization': 'Bearer ' + this.accessToken
         }
       })
-      .then(res => {
 
-        console.log(res)
-        let resArray: Array <{name: String, creator: String, cover:String, id: String}> = new Array<{name: String; creator: String; cover: String, id: String}>
-        (res.data.items.length);
+    let resArray: Array <{name: String, creator: String, cover:String, id: String}> = new Array<{name: String; creator: String; cover: String, id: String}>
+    (myPodcasts.data.items.length);
 
-        for (let i = 0; i < res.data.items.length; i++){
-          resArray[i] = {name: res.data.items[i].show.name, creator: res.data.items[i].publisher,
-            cover: res.data.items[i].show.images[0].url, id: res.data.items[i].show.id};
-        }
-        library.podcasts = resArray;
-      })
-      .catch(() => {
-        // @ts-ignore
-        //window.location = "/"
-      })
+    for (let i = 0; i < myPodcasts.data.items.length; i++){
+      resArray[i] = {name: myPodcasts.data.items[i].show.name, creator: myPodcasts.data.items[i].publisher,
+        cover: myPodcasts.data.items[i].show.images[0].url, id: myPodcasts.data.items[i].show.id};
+    }
+
+    return resArray;
   }
 
-  setLibraryArtists(library): Array<any> {
+  async getMyArtists(timeRange: String = "medium_term") {
     this.accessToken = localStorage.getItem('accessToken');
 
     if (!this.accessToken) {
@@ -127,33 +115,27 @@ export class SpotifyService {
       return;
     }
 
-    axios
-      .get("https://api.spotify.com/v1/me/top/artists", {
+    const myArtists = await axios
+      .get("https://api.spotify.com/v1/me/top/artists?time_range=" + timeRange, {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + this.accessToken
         }
       })
-      .then(res => {
 
-        console.log(res)
-        let resArray: Array <{name: String, image: String, follower: Number, id: String}> = new Array<{name: String; image: String; follower: Number; id: String}>
-        (res.data.items.length)
+    let resArray: Array <{name: String, image: String, follower: Number, id: String}> = new Array<{name: String; image: String; follower: Number; id: String}>
+    (myArtists.data.items.length)
 
-        for (let i = 0; i < resArray.length; i++){
-          resArray[i] = {name: res.data.items[i].name, image: res.data.items[i].images[0].url,
-            follower: res.data.items[i].followers.total, id: res.data.items[i].id};
-        }
+    for (let i = 0; i < resArray.length; i++){
+      resArray[i] = {name: myArtists.data.items[i].name, image: myArtists.data.items[i].images[0].url,
+        follower: myArtists.data.items[i].followers.total, id: myArtists.data.items[i].id};
+    }
 
-        library.artists = resArray;
-      })
-      .catch((err : any) => {
-        //window.location = "/"
-      })
+    return resArray;
   }
 
-  setLibraryAlbums(library): Array<any> {
+  async getMyAlbums() {
     this.accessToken = localStorage.getItem('accessToken');
 
     if (!this.accessToken) {
@@ -161,7 +143,7 @@ export class SpotifyService {
       return;
     }
 
-    axios
+    const myAlbums = await axios
       .get("https://api.spotify.com/v1/me/albums", {
         headers: {
           'Accept': 'application/json',
@@ -169,23 +151,16 @@ export class SpotifyService {
           'Authorization': 'Bearer ' + this.accessToken
         }
       })
-      .then(res => {
 
-        console.log(res)
-        let resArray: Array <{name: String, artists: String, cover: String, album_type: String, id: String}> = new Array<{name: String; artists: String; cover: String; album_type: String; id: String}>
-        (res.data.items.length)
+    let resArray: Array <{name: String, artists: String, cover: String, album_type: String, id: String}> = new Array<{name: String; artists: String; cover: String; album_type: String; id: String}>
+    (myAlbums.data.items.length)
 
-        for (let i = 0; i < resArray.length; i++){
-          resArray[i] = {name: res.data.items[i].album.name, artists: res.data.items[i].album.artists[0].name,
-            cover: res.data.items[i].album.images[0].url, album_type: res.data.items[i].album.album_type, id: res.data.items[i].album.id};
-        }
+    for (let i = 0; i < resArray.length; i++){
+      resArray[i] = {name: myAlbums.data.items[i].album.name, artists: myAlbums.data.items[i].album.artists[0].name,
+        cover: myAlbums.data.items[i].album.images[0].url, album_type: myAlbums.data.items[i].album.album_type, id: myAlbums.data.items[i].album.id};
+    }
 
-        library.albums = resArray;
-      })
-      .catch((err : any) => {
-        console.log(err)
-        //window.location = "/"
-      })
+    return resArray;
   }
 
   setSongList(playlist: PlaylistViewComponent, playlistId: String){
@@ -238,5 +213,44 @@ export class SpotifyService {
     spotifyApi.setAccessToken(this.accessToken);
 
     spotifyApi.play()
+  }
+
+  async loadProfilePic() {
+    this.accessToken = localStorage.getItem('accessToken');
+
+    if (!this.accessToken) {
+      console.error('No viable Access Token.');
+      return;
+    }
+
+    const profilePic = await axios
+      .get("https://api.spotify.com/v1/me", {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + this.accessToken
+        }
+      })
+    return profilePic.data.images[0].url;
+  }
+
+  async getUserName(){
+    this.accessToken = localStorage.getItem('accessToken');
+
+    if (!this.accessToken) {
+      console.error('No viable Access Token.');
+      return;
+    }
+
+    const profile = await axios
+      .get("https://api.spotify.com/v1/me", {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + this.accessToken
+        }
+      })
+
+    return profile.data.display_name;
   }
 }

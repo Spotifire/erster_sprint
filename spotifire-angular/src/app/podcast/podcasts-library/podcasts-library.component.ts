@@ -11,10 +11,14 @@ export class PodcastsLibraryComponent implements OnInit {
   podcasts: Array<{name: String, cover: String, creator: String, id: String}>;
 
   constructor(private spotifyService: SpotifyService) {
-    spotifyService.setLibraryPodcasts(this);
+
   }
 
   ngOnInit(): void {
+    this.load()
   }
 
+  async load(){
+    this.podcasts = await this.spotifyService.getMyPodcasts();
+  }
 }

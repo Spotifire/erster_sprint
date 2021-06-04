@@ -7,14 +7,17 @@ import { SpotifyService } from '../../services/spotify.service';
   styleUrls: ['./playlists-sidebar.component.css']
 })
 export class PlaylistsSidebarComponent implements OnInit {
+  playlists: Array<{ name: String; creator: String; cover: String }>
 
   constructor(private spotifyService: SpotifyService) {}
 
 
   ngOnInit(): void {
-    this.spotifyService.setLibraryPlaylists(this);
+    this.load()
   }
 
-  playlists: Array<{ name: String; creator: String; cover: String }>
+  async load() {
+    this.playlists = await this.spotifyService.getMyPlaylists();
+  }
 
 }

@@ -11,10 +11,13 @@ export class ArtistsLibraryComponent implements OnInit {
   artists: Array<{name: String, image: String, follower: Number, id: String}>
 
   constructor(private spotifyService: SpotifyService) {
-    this.spotifyService.setLibraryArtists(this);
   }
 
   ngOnInit(): void {
+    this.load()
   }
 
+  async load(){
+    this.artists = await this.spotifyService.getMyArtists();
+  }
 }
