@@ -7,7 +7,7 @@
         <div class="top-artist-box" *ngFor='let artist of artists' >
             <a [routerLink]="['/artist', artist.id]">
             <div id="top-artist-img">
-                <img id="artist-picture">
+                <img id="artist-picture" src="{{artist.image}}">
             </div>
             <div id="top-artist-name">
                 {{artist.name}}

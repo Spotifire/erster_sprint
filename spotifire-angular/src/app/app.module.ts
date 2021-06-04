@@ -30,6 +30,8 @@ import { TracksMonthlyTopComponent } from './tracks/tracks-monthly-top/tracks-mo
 import { PlaylistProfilePublicComponent } from './playlist/playlist-profile-public/playlist-profile-public.component';
 import { FollowProfileFollowerComponent } from './follow/follow-profile-follower/follow-profile-follower.component';
 import { FollowProfileFollowingComponent } from './follow/follow-profile-following/follow-profile-following.component';
+import { FavMyComponent } from './favourites/fav-my/fav-my.component';
+import { FavSonglistComponent } from './favourites/fav-songlist/fav-songlist.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { FollowProfileFollowingComponent } from './follow/follow-profile-followi
     PlaylistProfilePublicComponent,
     FollowProfileFollowerComponent,
     FollowProfileFollowingComponent,
+    FavMyComponent,
+    FavSonglistComponent,
   ],
   imports: [
     BrowserModule,

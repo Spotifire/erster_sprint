@@ -1,4 +1,4 @@
-.playlist-wrapper{
+.fav-wrapper{
     position: fixed;
     display: block;
     left: 24vh;
@@ -9,7 +9,7 @@
     overflow: auto;
 }
 
-.playlist-header{
+.fav-header{
     position: relative;
     top: 5vh;
     width: 100%;
@@ -21,7 +21,7 @@
     display: flex;
     color: rgb(255, 255, 255);
 }
-.playlist-body{
+.fav-body{
     position: relative;
     display: flex;
     float: left;
@@ -36,15 +36,16 @@
 }
 
 #cover{
-    background-color: white;
+    background-color: rgba(76, 214, 88, 0.74);
     width: 24vh;
     height: 24vh;
     margin-left: 3vh;
     margin-top: 3vh;
     box-shadow: 0 5px 15px #525252;
+    border-radius: 50%;
 }
 
-#playlist-info{
+#fav-info{
     margin-left: 3vh;
     margin-top: 7.5vh;
 }
@@ -103,18 +104,6 @@ h3{
     width: 5vh;
     height: 5vh;
     
-}
-
-#godown{
-    position: absolute;
-    z-index: 4;
-}
-
-#scrollElement{
-    position: absolute;
-    width: 100%;
-    height: 10vh;
-    background-color: aquamarine;
 }
 
 .songlist-wrapper{
