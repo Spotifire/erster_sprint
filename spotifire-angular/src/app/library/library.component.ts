@@ -9,7 +9,7 @@ import {SpotifyService} from '../services/spotify.service';
 })
 export class LibraryComponent implements OnInit {
   spotifyService: SpotifyService = new SpotifyService();
-  code: string = new URLSearchParams(window.location.search).get('code');
+  code: string;
 
   value = 1;
 
@@ -21,6 +21,7 @@ export class LibraryComponent implements OnInit {
 }
 
   ngOnInit(): void {
+    this.code = new URLSearchParams(window.location.search).get('code');
     if (this.code) this.spotifyservice.login(this.code);
     // this.spotifyservice.getMyPlaylists();
   }
