@@ -8,6 +8,7 @@
     font-size: 1.8vh;
     background-color: #585858;
     color: white;
+    margin-top: -0.2vh;
 }
 
 .search-input:hover{

@@ -1,7 +1,7 @@
 <div class="playlist-wrapper">
     <div class="playlist-header">
         <div id="playlist-image">
-            <img src="{{playlistCover}}">
+            <img id="cover"src="{{playlistCover}}">
         </div>
         <div id="playlist-info">
         <h2>Playlist</h2>
@@ -10,8 +10,13 @@
         </div>
     </div>
     <div class="playlist-body">
-        <button (click)="play()" class="playlist-shuffle-button">PLAY</button>
-        <a class="playlist-edit-button"><p id="dot">..</p></a>
+        <div class="play-container" (click)="play()">
+            <img id="play" src="../../../assets/Play.png">
+        </div>
+        <div class="shuffle-container">
+            <img id="shuffle" src="../../../assets/Shuffle.png">
+        </div>
+
         <app-playlist-songlist [songs]="songList.songs"></app-playlist-songlist>
     </div>
 </div>

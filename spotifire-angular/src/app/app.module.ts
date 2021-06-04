@@ -24,6 +24,9 @@ import { ArtistsLibraryComponent } from './artist/artists-library/artists-librar
 import { ArtistViewComponent } from './artist/artist-view/artist-view.component';
 import { AlbumsLibraryComponent } from './album/albums-library/albums-library.component';
 import { AlbumViewComponent } from './album/album-view/album-view.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ArtistMonthlyTopComponent } from './artist/artist-monthly-top/artist-monthly-top.component';
+import { TracksMonthlyTopComponent } from './tracks/tracks-monthly-top/tracks-monthly-top.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { AlbumViewComponent } from './album/album-view/album-view.component';
     ArtistViewComponent,
     AlbumsLibraryComponent,
     AlbumViewComponent,
+    ProfileComponent,
+    ArtistMonthlyTopComponent,
+    TracksMonthlyTopComponent,
   ],
   imports: [
     BrowserModule,
