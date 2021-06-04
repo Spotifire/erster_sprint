@@ -1,0 +1,10 @@
+<div class="artistWindow">
+    <div class="artistbox" *ngFor='let artist of artists' >
+      <a [routerLink]="['/artist', artist.id]">
+        <div id="cover"><img src="{{artist.image}}"></div>
+        <div id="name"><h2>{{artist.name}}</h2></div>
+        <div id="creator"><p>{{artist.follower}} Follower</p></div>
+      </a>
+</div>
+</div>
+

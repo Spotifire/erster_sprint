@@ -1,0 +1,141 @@
+.monthly-top-tracks-wrapper{
+    position: absolute;
+    top: 82vh;
+    margin-left: 8vh;
+    width: 129vh;
+    height: 50vh;
+    overflow: hidden;
+}
+
+.top-tracks-header{
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    background-color: rgba(255, 228, 196, 0); 
+}
+
+#header-text{
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 2vh;
+    font-size: 2.5vh;
+    color: white;
+}
+
+
+#see-all{
+    position: absolute;
+    left: 80%;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 14vh;
+    color: white;
+    font-size: 1.8vh;
+}
+
+.top-tracks-body{
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    top: 20%;
+}
+
+#freespace{
+    position: absolute;
+    width: 1vh;
+    height: 1vh;
+    top: 150vh;
+    visibility: hidden;
+}
+
+.top-track-box{
+    position: relative;
+    background-color: rgba(240, 248, 255, 0.164);
+    width: 95%;
+    height: 7vh;
+    margin-bottom: 1vh;
+    border-radius: 50px;
+    overflow: hidden;
+    background-color: #181818;
+    border: 1px solid #28282891;
+    margin-left: 1%;
+}
+
+.top-track-box:hover{
+    background-color: #232323;
+    border: 1px solid #38383859;
+    cursor: pointer;
+}
+
+#nr{
+    position: absolute;
+    width: 5.5%;
+    height: 100%;
+    background-color: #28282849;
+    border-radius: 50px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 3vh;
+    color: white;
+
+    
+}
+#img{
+    position: absolute;
+    width: 7%;
+    height: 100%;
+    left: 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#title{
+    position: absolute;
+    width: 30%;
+    height: 100%;
+    left: 12.5%;
+    display: flex;
+    align-items: center;
+    padding-left: 1%;
+    font-size: 2.6vh;
+    color: white;
+
+}
+#artist{
+    position: absolute;
+    width: 35%;
+    height: 100%;
+    left: 43.5%;
+    display: flex;
+    align-items: center;
+    padding-left: 1vh;
+    font-size: 2.6vh;
+    color: white;
+
+}
+#duration{
+    position: absolute;
+    width: 35%;
+    height: 100%;
+    left: 79.3%;
+    display: flex;
+    align-items: center;
+    padding-left: 1vh;
+    font-size: 2.6vh;
+    color: white;
+
+}
+
+#track-album-cover{
+    width: 6vh;
+    height: 6vh;
+}

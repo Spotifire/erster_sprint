@@ -1,0 +1,23 @@
+<div class="top-artists-wrapper">
+    <div class="top-artist-header">
+        <div id="header-text">Monthly Top Artists:</div>
+        <div id="see-all">view all</div>
+    </div>
+    <div class="top-artists-body">
+        <div class="top-artist-box" *ngFor='let artist of artists' >
+            <a [routerLink]="['/artist', artist.id]">
+            <div id="top-artist-img">
+                <img id="artist-picture" src="{{artist.image}}">
+            </div>
+            <div id="top-artist-name">
+                {{artist.name}}
+            </div>
+        </a>
+        <div>
+    </div>
+</div>
+
+
+
+
+

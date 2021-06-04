@@ -1,0 +1,25 @@
+<div class="monthly-top-tracks-wrapper">
+    <div class="top-tracks-header">
+        <div id="header-text">Monthly Top Tracks:</div>
+        <div id="see-all">view all</div>
+    </div>
+    <div class="top-tracks-body">
+        <div class="top-track-box"  *ngFor='let song of songs' >
+            <div id="nr">
+                {{song.nr}}
+            </div>
+            <div id="img">
+                <img id="track-album-cover">
+            </div>
+            <div id="title">
+                {{song.title}}
+            </div>
+            <div id="artist">
+                {{song.artist}}
+            </div>
+            <div id="duration">
+                {{song.duration}}
+            </div>
+        </div>
+</div>
+

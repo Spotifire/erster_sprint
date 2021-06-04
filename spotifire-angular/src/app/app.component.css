@@ -1,0 +1,12 @@
+.wrapper{
+    position: relative;
+    margin: 0px; 
+    padding: 0px;
+}
+
+.sidebar-wrapper{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+}
+

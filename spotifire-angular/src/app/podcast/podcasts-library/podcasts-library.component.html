@@ -1,0 +1,9 @@
+<div class="podWindow">
+    <div class="podbox" *ngFor='let podcast of podcasts' >
+      <a [routerLink]="['/podcast', podcast.id]">
+        <div id="cover"><img src="{{podcast.cover}}"></div>
+        <div id="name"><h2>{{podcast.name}}</h2></div>
+        <div id="creator"><p>{{podcast.creator}}</p></div>
+      </a>
+</div>
+</div>

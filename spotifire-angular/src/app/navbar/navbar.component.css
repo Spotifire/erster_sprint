@@ -1,0 +1,67 @@
+.navbar-container{
+    position: fixed;
+    background-color: rgba(190, 190, 190, 0.329);
+    width: 100%;
+    height: 5vh;
+    left: 24vh;
+    top: 0px;
+    z-index: 2;
+    text-align: center; 
+}
+
+p{
+    font-size: 2vh;
+    letter-spacing: 0.5vh;
+    margin-right: 20vh;
+}
+
+.goback{
+    position:fixed;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 2.5vh;
+    height: 2.5vh;
+    padding: 0.3vh;
+    left: 27vh;
+    top: 1.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(24, 24, 24, 0.9);
+    color: white;
+    font-size: 2.5vh;
+    cursor: pointer;
+    margin-top: -0.8vh;
+
+}
+
+.goforward{
+    position:fixed;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 2.5vh;
+    height: 2.5vh;
+    padding: 0.3vh;
+    left: 32vh;
+    top: 1.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(24, 24, 24, 0.9);
+    color: white;
+    font-size: 2.5vh;
+    cursor: pointer;
+    margin-top: -0.8vh;
+}
+
+.search-container{
+    position: absolute;
+    width: 20%;
+    height: 70%;
+    top: 15%;
+    left:8%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgb(0, 0, 0);  
+    font-size: 3vh;
+}

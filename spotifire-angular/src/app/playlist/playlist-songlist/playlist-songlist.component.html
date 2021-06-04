@@ -1,0 +1,28 @@
+<table class="playlist-content">
+    <thead>
+        <tr>
+            <th id="nr" width="10%">#</th>
+            <th id="titel-header">Titel</th>
+            <th id="artist-header">Artist/s * INNEN</th>
+            <th>Duration</th>
+        </tr>
+    </thead>
+</table>
+    <div class="playlist-body" id="playlist-body">
+        <div class="song-box"  *ngFor='let song of songs' >
+            <div class="song-data" id="songid">
+                {{song.nr}}
+            </div>
+            <div class="song-data" id="title">
+                {{song.title}}
+            </div>
+            <div class="song-data" id="artist">
+                {{song.artist}}
+            </div>
+            <div class="song-data" id="duration">
+                {{song.duration}}
+            </div>
+        </div>
+    </div>
+
+    <div id="freespace"><a href="bottom"></a></div>

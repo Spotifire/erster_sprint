@@ -1,0 +1,135 @@
+.sidebar-container{
+    background-color: black;
+    width: 24vh;
+    height: 91vh;
+    display: flex;;
+    color: white;
+    font-size: 3vh;
+    margin-left: 0px;
+    top: 0px;
+}
+
+.modi-selector-container {
+    display: flex;
+    position:absolute;
+    align-items: center;
+    width: 80%;
+    left: 10%;
+    top: 13vh;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px white;   
+}
+
+label{
+    display: inline-block;
+    width: 50%;
+    border-radius: 10px;
+    font-size: 2vh;
+    text-align: center;
+    cursor: pointer;
+}
+
+input[type=radio]{
+    display:none;
+}
+
+input:checked + label {
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: #1DB954;
+    cursor:default;
+}
+
+
+
+.logo{
+    position: absolute;
+    width: 90%;
+    left: 5%;
+    top: 3vh;
+    height: 5vh;
+    
+}
+
+.logoCircle{
+    position: absolute;
+    width: 5vh;
+    height: 100%;
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.logoImg{
+    position: absolute;
+    width: auto;
+    height: 100%;
+}
+
+.name{
+    position: absolute;
+    width: 70%;
+    left: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-size: 4vh;
+}
+
+.sidebar-tab{
+    position: absolute;
+    width: 80%;
+    left: 5%;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-size: 2.3vh;
+    letter-spacing: 0.3vh;
+    padding-left: 1vh;
+    
+}
+
+#start{
+    top: 20vh;
+}
+#search{
+    top: 25vh;
+}
+#lib{
+    top: 30vh;
+}
+
+#createPL{
+    top: 38vh;
+    font-size: 2vh;
+}
+
+#fav{
+    top: 42vh;
+    font-size: 2vh;
+    border-bottom: 1px outset white;
+    padding-bottom: 1vh;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+.tab:hover{
+    color: #1DB954;
+}
+
+.playlists-wrapper{
+    position: absolute;
+    width: 90%;
+    height: 40vh;
+    left: 5%;
+    top:55%;
+    overflow: auto;
+}

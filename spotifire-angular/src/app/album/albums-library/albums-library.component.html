@@ -1,0 +1,11 @@
+<div class="albumWindow">
+  <div class="albumbox" *ngFor='let album of albums' >
+    <a [routerLink]="['/album', album.id]">
+      <div id="cover"><img src="{{album.cover}}"></div>
+      <div id="name"><h2>{{album.name}}</h2></div>
+      <div id="creator"><p>{{album.artists}}</p></div>
+      <div id="type"><p>{{album.album_type}}</p></div>
+    </a>
+</div>
+</div>
+
