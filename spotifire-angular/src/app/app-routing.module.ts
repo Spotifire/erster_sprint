@@ -7,6 +7,7 @@ import { PodcastViewComponent } from './podcast/podcast-view/podcast-view.compon
 import { ArtistViewComponent } from './artist/artist-view/artist-view.component';
 import { AlbumViewComponent } from './album/album-view/album-view.component';
 import { ProfileComponent } from './profile/profile.component';
+import { FavMyComponent} from './favourites/fav-my/fav-my.component'
 
 const appRoutes: Routes = [
   {path: '', component: LibraryComponent},
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
   {path: 'artist/:id', component: ArtistViewComponent},
   {path: 'album/:id', component: AlbumViewComponent},
   {path: 'profile', component: ProfileComponent},
+  {path: 'favourites', component: FavMyComponent},
   //{path: '/user/:id', component: UserComponent},
   
 ];
