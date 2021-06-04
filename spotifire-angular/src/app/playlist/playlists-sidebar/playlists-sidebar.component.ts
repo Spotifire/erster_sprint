@@ -15,6 +15,6 @@ export class PlaylistsSidebarComponent implements OnInit {
     this.spotifyService.setLibraryPlaylists(this);
   }
 
-  playlists: Array<{ name: String; creator: String; cover: String }>
+  playlists: Array<{ name: String; creator: String; cover: String, id:String }>
 
 }

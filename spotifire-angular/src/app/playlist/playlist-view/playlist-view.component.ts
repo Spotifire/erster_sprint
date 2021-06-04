@@ -1,4 +1,4 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {PlaylistSonglistComponent} from '../playlist-songlist/playlist-songlist.component';
 import {SpotifyService} from '../../services/spotify.service';
@@ -10,8 +10,11 @@ import {SpotifyService} from '../../services/spotify.service';
 })
 export class PlaylistViewComponent implements OnInit {
 
-  playListName: string;
-  playlistCover: string;
+  playListName: String;
+  playlistCover: String;
+  playlistCreator: String;
+  playlistTrackNumber: Number;
+  playlistDuration: String;
   songList: PlaylistSonglistComponent;
   spotifyService = new SpotifyService();
 

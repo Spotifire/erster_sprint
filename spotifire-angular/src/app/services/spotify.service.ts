@@ -66,19 +66,24 @@ export class SpotifyService {
       })
       .then(res => {
 
+
         console.log(res)
         let resArray: Array <{name: String, creator: String, cover: String, id: String}> = new Array<{name: String, creator: String, cover: String, id: String}>
         (res.data.items.length)
 
         for (let i = 0; i < resArray.length; i++){
+          let url;
+          if (res.data.items[i].images.length != 0) url = res.data.items[i].images[0].url;
+
           resArray[i] = {name: res.data.items[i].name, creator: res.data.items[i].owner.display_name,
-            cover: res.data.items[i].images[0].url, id: res.data.items[i].id};
+            cover: url,  id: res.data.items[i].id};
         }
 
         library.playlists = resArray;
       })
       .catch((err : any) => {
 
+        console.log(err)
         this.auth.refresh();
         this.setLibraryPlaylists(this);
         //window.location = "/"
@@ -202,22 +207,52 @@ export class SpotifyService {
     spotifyApi.setAccessToken(this.accessToken);
 
 
-    spotifyApi.getPlaylist(playlistId).then((res : any) => {
-      playlist.playListName = res.body.name;
-      playlist.playlistCover = res.body.images[0].url;
+    axios
+      .get("https://api.spotify.com/v1/playlists/" + playlistId, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + this.accessToken
+        }
+      })
+      .then(res => {
+      playlist.playListName = res.data.name;
+      playlist.playlistCover = res.data.images[0].url;
+      playlist.playlistCreator = res.data.owner.display_name;
+      playlist.playlistTrackNumber = res.data.tracks.items.length;
       console.log(res)
 
-      let resArr: Array<{nr: Number, title: String, artist: String, album: String, added: String, duration: Number, id: String}> =
-        new Array<{nr: Number; title: String; artist: String; album: String; added: String; duration: Number, id: String}>
-        (res.body.tracks.items.length)
+      let resArr: Array<{nr: Number, title: String, artist: String, album: String, added: String, duration: String, id: String}> =
+        new Array<{nr: Number; title: String; artist: String; album: String; added: String; duration: String, id: String}>
+        (res.data.tracks.total)
 
-      for (let i = 0; i <resArr.length; i++){
-        resArr[i] = {nr: i + 1, title: res.body.tracks.items[i].track.name, artist: res.body.tracks.items[i].track.artists[0].name,
-          album: res.body.tracks.items[i].track.album.name, added: res.body.tracks.items[i].track.added_at,
-          duration: res.body.tracks.items[i].track.duration_ms / 1000 / 60, id: res.body.tracks.items[i].track.id};
+      let playlistDuration = 0;
 
-        playlist.songList.songs = resArr;
+      for (let i = 0; i <res.data.tracks.items.length; i++){
+        let millis = res.data.tracks.items[i].track.duration_ms;
+        let minutes = Math. floor(millis / 60000);
+        let seconds = ((millis % 60000) / 1000). toFixed(0);
+
+
+        resArr[i] = {nr: i + 1, title: res.data.tracks.items[i].track.name, artist: res.data.tracks.items[i].track.artists[0].name,
+          album: res.data.tracks.items[i].track.album.name, added: res.data.tracks.items[i].track.added_at,
+          duration: minutes + ":" + (parseInt(seconds) < 10 ? '0':'') + seconds, id: res.data.tracks.items[i].track.id};
+
+        playlistDuration += res.data.tracks.items[i].track.duration_ms;
+
       }
+
+
+
+
+
+      let minutes = Math.floor((playlistDuration / (1000 * 60)) % 60);
+      let hours = Math.floor((playlistDuration / (1000 * 60 * 60)) % 24).toFixed(0);
+
+
+      playlist.playlistDuration = hours + ":" + (minutes < 10 ? '0':'') + minutes;
+
+      playlist.songList.songs = resArr;
 
     }).catch((err : any) => {
       console.log(err)
