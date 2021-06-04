@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SpotifyService} from "../../services/spotify.service";
 
 @Component({
   selector: 'app-podcasts-library',
@@ -17,7 +18,9 @@ export class PodcastsLibraryComponent implements OnInit {
     {name: 'Podcast', cover: 'Cover', creator: 'Author'},
   ]
 
-  constructor() { }
+  constructor(private spotifyService: SpotifyService) {
+
+  }
 
   ngOnInit(): void {
   }

@@ -14,19 +14,18 @@ export class SpotifyService {
   constructor() {}
 
   ngOnInit() {
+    this.auth.refresh();
   }
 
   login(code){
     this.auth.getAuth(code)
   }
 
-  searchValueChanged(str: string) {
-    this.accessToken = localStorage.getItem('accessToken');
-
-    if (str != "") this.searchMusic(str);
-  }
-
   searchMusic(str: string) {
+    if (str == "") return;
+
+    this.accessToken = localStorage.getItem('accessToken')
+
     let spotifyApi = new SpotifyWebApi({
       clientId: '454d352b3fd84985bea141355d73c17b',
     });
@@ -76,7 +75,7 @@ export class SpotifyService {
               (res.body.items.length);
 
           for (let i = 0; i < res.body.items.length; i++){
-            resArray[i] = {name: res.body.items[i].name, creator: res.body.items[i].owner.display_name, 
+            resArray[i] = {name: res.body.items[i].name, creator: res.body.items[i].owner.display_name,
               cover: res.body.items[i].images[0].url, id: res.body.items[i].id};
           }
           library.playlists = resArray;
