@@ -8,12 +8,10 @@ import { SpotifyService } from '../../services/spotify.service';
 })
 export class PlaylistsLibraryComponent implements OnInit {
 
-  spotifyService: SpotifyService = new SpotifyService();
-
   // tslint:disable-next-line: ban-types
   playlists: Array<{name: String, creator: String, cover: String, id: String}>;
 
-  constructor(private spotifyservice: SpotifyService){ 
+  constructor(private spotifyservice: SpotifyService){
   spotifyservice.setLibraryPlaylists(this);
   }
 
