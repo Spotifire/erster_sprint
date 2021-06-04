@@ -8,18 +8,10 @@ import {SpotifyService} from "../../services/spotify.service";
 })
 export class PodcastsLibraryComponent implements OnInit {
 
-  podcasts: Array<{name: String, cover: String, creator: String}> = [
-    {name: 'Podcast', cover: 'Cover', creator: 'Author'},
-    {name: 'Podcast', cover: 'Cover', creator: 'Author'},
-    {name: 'Podcast', cover: 'Cover', creator: 'Author'},
-    {name: 'Podcast', cover: 'Cover', creator: 'Author'},
-    {name: 'Podcast', cover: 'Cover', creator: 'Author'},
-    {name: 'Podcast', cover: 'Cover', creator: 'Author'},
-    {name: 'Podcast', cover: 'Cover', creator: 'Author'},
-  ]
+  podcasts: Array<{name: String, cover: String, creator: String, id: String}>;
 
   constructor(private spotifyService: SpotifyService) {
-
+    spotifyService.setLibraryPodcasts(this);
   }
 
   ngOnInit(): void {

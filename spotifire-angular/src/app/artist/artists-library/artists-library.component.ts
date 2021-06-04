@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SpotifyService} from "../../services/spotify.service";
 
 @Component({
   selector: 'app-artists-library',
@@ -7,21 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArtistsLibraryComponent implements OnInit {
 
-  artists: Array<{name: String, image: String, follower: String}> = [
-    {name: 'Artist', image: 'img', follower: '63478'},
-    {name: 'Artist', image: 'img', follower: '63478'},
-    {name: 'Artist', image: 'img', follower: '63478'},
-    {name: 'Artist', image: 'img', follower: '63478'},
-    {name: 'Artist', image: 'img', follower: '63478'},
-    {name: 'Artist', image: 'img', follower: '63478'},
-    {name: 'Artist', image: 'img', follower: '63478'},
-    {name: 'Artist', image: 'img', follower: '63478'},
-    {name: 'Artist', image: 'img', follower: '63478'},
-    {name: 'Artist', image: 'img', follower: '63478'}
-  
-  ]
+  artists: Array<{name: String, image: String, follower: Number, id: String}>
 
-  constructor() { }
+  constructor(private spotifyService: SpotifyService) {
+    this.spotifyService.setLibraryArtists(this);
+  }
 
   ngOnInit(): void {
   }

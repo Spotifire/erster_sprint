@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SpotifyService} from "../../services/spotify.service";
 
 @Component({
   selector: 'app-albums-library',
@@ -7,20 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlbumsLibraryComponent implements OnInit {
 
-  albums: Array<{name: String, artists: String, cover: String, album_type: String}> = [
-    {name: 'Album', artists: 'Larry & Timmy', cover: 'img', album_type: 'Album'},
-    {name: 'Album', artists: 'Larry & Timmy', cover: 'img', album_type: 'Single'},
-    {name: 'Album', artists: 'Larry & Timmy', cover: 'img', album_type: 'Compilation'},
-    {name: 'Album', artists: 'Larry & Timmy', cover: 'img', album_type: 'Album'},
-    {name: 'Album', artists: 'Larry & Timmy', cover: 'img', album_type: 'Single'},
-    {name: 'Album', artists: 'Larry & Timmy', cover: 'img', album_type: 'Compilation'},
-    {name: 'Album', artists: 'Larry & Timmy', cover: 'img', album_type: 'Album'},
-    {name: 'Album', artists: 'Larry & Timmy', cover: 'img', album_type: 'Single'},
-    {name: 'Album', artists: 'Larry & Timmy', cover: 'img', album_type: 'Compilation'}
+  albums: Array<{name: String, artists: String, cover: String, album_type: String, id: String}>
 
-  ]
-
-  constructor() { }
+  constructor(private spotifyService: SpotifyService) {
+    this.spotifyService.setLibraryAlbums(this)
+  }
 
   ngOnInit(): void {
   }

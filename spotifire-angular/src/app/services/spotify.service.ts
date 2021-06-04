@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import SpotifyWebApi from 'spotify-web-api-node';
 import Auth from '../auth/auth';
 import {PlaylistViewComponent} from "../playlist/playlist-view/playlist-view.component";
+import axios from "axios";
 
 @Injectable()
 export class SpotifyService {
@@ -51,42 +52,140 @@ export class SpotifyService {
   setLibraryPlaylists(library): Array<any> {
     this.accessToken = localStorage.getItem('accessToken');
 
-    let spotifyApi = new SpotifyWebApi({
-      clientId: '454d352b3fd84985bea141355d73c17b',
-    });
+    if (!this.accessToken) {
+      console.error('No viable Access Token.');
+      return;
+    }
+    axios
+      .get("https://api.spotify.com/v1/me/playlists?limit=50", {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + this.accessToken
+        }
+      })
+      .then(res => {
+
+        console.log(res)
+        let resArray: Array <{name: String, creator: String, cover: String, id: String}> = new Array<{name: String, creator: String, cover: String, id: String}>
+        (res.data.items.length)
+
+        for (let i = 0; i < resArray.length; i++){
+          resArray[i] = {name: res.data.items[i].name, creator: res.data.items[i].owner.display_name,
+            cover: res.data.items[i].images[0].url, id: res.data.items[i].id};
+        }
+
+        library.playlists = resArray;
+      })
+      .catch((err : any) => {
+
+        this.auth.refresh();
+        this.setLibraryPlaylists(this);
+        //window.location = "/"
+      })
+  }
+
+  setLibraryPodcasts(library): Array<any> {
+    this.accessToken = localStorage.getItem('accessToken');
 
     if (!this.accessToken) {
       console.error('No viable Access Token.');
       return;
     }
-    spotifyApi.setAccessToken(this.accessToken);
 
-    spotifyApi
-      .getMe()
-      .then((res: any) => {
-        console.log(res);
-
-        let userId = res.body.id;
-        spotifyApi
-          .getUserPlaylists(userId).then((res : any) => {
-          console.log(res)
-
-            let resArray: Array <{name: String, creator: String, cover:String, id: String}> = new Array<{name: String; creator: String; cover: String, id: String}>
-              (res.body.items.length);
-
-          for (let i = 0; i < res.body.items.length; i++){
-            resArray[i] = {name: res.body.items[i].name, creator: res.body.items[i].owner.display_name,
-              cover: res.body.items[i].images[0].url, id: res.body.items[i].id};
-          }
-          library.playlists = resArray;
-        })
+    axios
+      .get("https://api.spotify.com/v1/me/shows", {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + this.accessToken
+        }
       })
-      .catch((err: any) => {
+      .then(res => {
 
-        this.auth.refresh()
-        this.setLibraryPlaylists(library);
+        console.log(res)
+        let resArray: Array <{name: String, creator: String, cover:String, id: String}> = new Array<{name: String; creator: String; cover: String, id: String}>
+        (res.data.items.length);
 
-      });
+        for (let i = 0; i < res.data.items.length; i++){
+          resArray[i] = {name: res.data.items[i].show.name, creator: res.data.items[i].publisher,
+            cover: res.data.items[i].show.images[0].url, id: res.data.items[i].show.id};
+        }
+        library.podcasts = resArray;
+      })
+      .catch(() => {
+        // @ts-ignore
+        //window.location = "/"
+      })
+  }
+
+  setLibraryArtists(library): Array<any> {
+    this.accessToken = localStorage.getItem('accessToken');
+
+    if (!this.accessToken) {
+      console.error('No viable Access Token.');
+      return;
+    }
+
+    axios
+      .get("https://api.spotify.com/v1/me/top/artists", {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + this.accessToken
+        }
+      })
+      .then(res => {
+
+        console.log(res)
+        let resArray: Array <{name: String, image: String, follower: Number, id: String}> = new Array<{name: String; image: String; follower: Number; id: String}>
+        (res.data.items.length)
+
+        for (let i = 0; i < resArray.length; i++){
+          resArray[i] = {name: res.data.items[i].name, image: res.data.items[i].images[0].url,
+            follower: res.data.items[i].followers.total, id: res.data.items[i].id};
+        }
+
+        library.artists = resArray;
+      })
+      .catch((err : any) => {
+        //window.location = "/"
+      })
+  }
+
+  setLibraryAlbums(library): Array<any> {
+    this.accessToken = localStorage.getItem('accessToken');
+
+    if (!this.accessToken) {
+      console.error('No viable Access Token.');
+      return;
+    }
+
+    axios
+      .get("https://api.spotify.com/v1/me/albums", {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + this.accessToken
+        }
+      })
+      .then(res => {
+
+        console.log(res)
+        let resArray: Array <{name: String, artists: String, cover: String, album_type: String, id: String}> = new Array<{name: String; artists: String; cover: String; album_type: String; id: String}>
+        (res.data.items.length)
+
+        for (let i = 0; i < resArray.length; i++){
+          resArray[i] = {name: res.data.items[i].album.name, artists: res.data.items[i].album.artists[0].name,
+            cover: res.data.items[i].album.images[0].url, album_type: res.data.items[i].album.album_type, id: res.data.items[i].album.id};
+        }
+
+        library.albums = resArray;
+      })
+      .catch((err : any) => {
+        console.log(err)
+        //window.location = "/"
+      })
   }
 
   setSongList(playlist: PlaylistViewComponent, playlistId: String){
