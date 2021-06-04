@@ -10,14 +10,14 @@
         </div>
     </div>
     <div class="playlist-body">
-        <a (click)="scrollDown()">Down</a>
         <div class="play-container" (click)="play()">
             <img id="play" src="../../../assets/Play.png">
         </div>
         <div class="shuffle-container">
             <img id="shuffle" src="../../../assets/Shuffle.png">
         </div>
-
-        <app-playlist-songlist [songs]="songList.songs"></app-playlist-songlist>
+        <div class="songlist-wrapper">
+            <app-playlist-songlist [songs]="songList.songs"></app-playlist-songlist>
+        </div>
     </div>
 </div>

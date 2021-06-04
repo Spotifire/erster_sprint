@@ -4,10 +4,9 @@
     left: 24vh;
     top: 0px;
     width: 100%;
-    height: 150vh;
-    background-color: black;
+    height: auto;
+    background-color: #121212;
     overflow: auto;
-
 }
 
 .playlist-header{
@@ -28,7 +27,7 @@
     float: left;
     padding-top: 3vh;
     width: 100%;
-    height: auto;
+
     background-color: #121212;
     color: rgb(71, 71, 71);
     -webkit-box-shadow: inset 0px 200px 92px -92px rgba(92,92,92,1);
@@ -116,4 +115,9 @@ h3{
     width: 100%;
     height: 10vh;
     background-color: aquamarine;
+}
+
+.songlist-wrapper{
+    width: 81%;
+    height: 54vh;
 }
