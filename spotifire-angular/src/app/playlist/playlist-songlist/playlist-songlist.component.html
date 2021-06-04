@@ -1,23 +1,28 @@
 <table class="playlist-content">
     <thead>
         <tr>
-            <th id="nr">#</th>
-            <th id="titel">Titel</th>
-            <th id="album">Album</th>
-            <th>Hinzugefügt am</th>
+            <th id="nr" width="10%">#</th>
+            <th id="titel-header">Titel</th>
+            <th id="artist-header">Artist/s * INNEN</th>
             <th>Duration</th>
         </tr>
     </thead>
-    <tbody>
-        <tr *ngFor="let song of songs">
-            <td id="songid">{{song.nr}}</td>
-            <td id="songTitelAndAuthor">
-                <p id="songTitel">{{song.title}}</p>
-                <p id="author">{{song.artist}}</p>
-            </td>
-            <td id="songAlbum">{{song.album}}</td>
-            <td id="songDate">{{song.added}}</td>
-            <td id="songDuration">{{song.duration}}</td>
-        </tr>
-    </tbody>
 </table>
+    <div class="playlist-body" id="playlist-body">
+        <div class="song-box"  *ngFor='let song of songs' >
+            <div class="song-data" id="songid">
+                {{song.nr}}
+            </div>
+            <div class="song-data" id="title">
+                {{song.title}}
+            </div>
+            <div class="song-data" id="artist">
+                {{song.artist}}
+            </div>
+            <div class="song-data" id="duration">
+                {{song.duration}}
+            </div>
+        </div>
+    </div>
+
+    <div id="freespace"><a href="bottom"></a></div>

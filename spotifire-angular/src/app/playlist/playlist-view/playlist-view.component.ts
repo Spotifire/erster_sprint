@@ -34,4 +34,9 @@ export class PlaylistViewComponent implements OnInit {
     this.spotifyService.shufflePlaylist(this.playlistCover);
   }
 
+  scrollDown(){
+    let content = document.body;
+    content.scrollIntoView(false);
+ }
+
 }

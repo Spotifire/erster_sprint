@@ -1,8 +1,8 @@
 .playlist-content{
     color: rgba(255, 255, 255, 0.329);
-    margin-top: 13vh;
-    margin-left: 4vh;
-    width: 155vh;
+    margin-top: 8vh;
+    margin-left: 6vh;
+    width: 150vh;
     border-collapse: collapse;
 }
 
@@ -12,32 +12,82 @@ th{
     font-weight: 100;
     text-align: left;
     border-bottom: 0.1px solid  rgba(255, 255, 255, 0.274);
+    font-size: 1.6vh;
 }
 
 #nr{
+    text-align: center;
+    width: 5%;
     padding-right: 0;
-    padding-left: 2vh;
 }
 
-#titel{
+#titel-header{
     padding-right: 20vh;
+    width: 30%;
 }
 
-#album{
+#artist-header{
+    width: 35%;
     padding-right: 15vh;
 }
 
-td{
-    padding-left: 1vh;
-    color: rgba(255, 255, 255, 0.52);
+.playlist-body{
+    top: 1vh;
+    position: relative;
+    margin-left: 6vh;
 }
 
-#songTitel{
-    font-size: 1.8vh;
-    margin-bottom: 0px;
+.song-box{
+    position: relative;
+    background-color: #18181893;
+    margin-top: 1.5vh;
+    height: 5vh;
+    border-radius: 10px;
+    box-shadow: 0 0.5px 5px rgba(255, 255, 255, 0.1);
 }
 
-#author{
-    margin-top: 5px;
-    font-size: 1.4vh;
+.song-box:hover{
+    background-color: #23232393;
+    box-shadow: 0 0.5px 5px rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+}
+
+.song-data{
+    position: absolute;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 1.2vh;
+    font-size: 1.7vh;
+    color: rgba(255, 255, 255, 0.555);
+}
+
+#songid{
+    width: 5%;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.9vh;
+    padding-left: 0px;
+}
+
+#title{
+    width: 29.3%;
+    left: 5%;
+}
+
+#artist{
+    width: 34.3%;
+    left: 35%;
+}
+
+#duration{
+    width: 29.3%;
+    left: 70%; 
+}
+
+#freespace{
+    width: 100%;
+    height: 15vh;
+    visibility: hidden;
 }
