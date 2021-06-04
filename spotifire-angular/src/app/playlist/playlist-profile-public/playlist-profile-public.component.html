@@ -1,0 +1,18 @@
+<div class="public-playlists-wrapper">
+    <div class="public-playlists-header">
+        <div id="header-text">Public Playlists:</div>
+        <div id="see-all">view all</div>
+    </div>
+    <div class="public-playlists-body">
+        <div class="public-playlists-box" *ngFor='let playlist of public_playlists' >
+            <a [routerLink]="['/playlist', playlist.id]">
+            <div id="public-playlists-img">
+                <img id="playlist-picture">
+            </div>
+            <div id="public-playlists-name">
+                {{playlist.name}}
+            </div>
+        </a>
+        <div>
+    </div>
+</div>

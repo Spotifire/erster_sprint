@@ -15,6 +15,8 @@ const appRoutes: Routes = [
   {path: 'artist/:id', component: ArtistViewComponent},
   {path: 'album/:id', component: AlbumViewComponent},
   {path: 'profile', component: ProfileComponent},
+  //{path: '/user/:id', component: UserComponent},
+  
 ];
 
 @NgModule({

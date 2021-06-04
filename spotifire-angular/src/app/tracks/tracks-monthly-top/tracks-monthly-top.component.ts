@@ -13,6 +13,7 @@ export class TracksMonthlyTopComponent implements OnInit {
     {nr: 3, title: 'Title 3', artist: 'Artist 1 feat. Artist 2', album: 'img', duration: '3:14'},
     {nr: 4, title: 'Title 4', artist: 'Artist 1 feat. Artist 2', album: 'img', duration: '3:14'},
     {nr: 5, title: 'Title 5', artist: 'Artist 1 feat. Artist 2', album: 'img', duration: '3:14'},
+
   ];
 
   constructor() { }

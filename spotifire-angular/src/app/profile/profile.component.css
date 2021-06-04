@@ -42,3 +42,12 @@
 h1{
     text-shadow: 0 3px 15px #222222;;
 }
+
+
+#freespace{
+    position: absolute;
+    width: 1vh;
+    height: 1vh;
+    top: 250vh;
+    visibility: hidden;
+}

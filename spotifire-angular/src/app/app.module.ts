@@ -27,6 +27,9 @@ import { AlbumViewComponent } from './album/album-view/album-view.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ArtistMonthlyTopComponent } from './artist/artist-monthly-top/artist-monthly-top.component';
 import { TracksMonthlyTopComponent } from './tracks/tracks-monthly-top/tracks-monthly-top.component';
+import { PlaylistProfilePublicComponent } from './playlist/playlist-profile-public/playlist-profile-public.component';
+import { FollowProfileFollowerComponent } from './follow/follow-profile-follower/follow-profile-follower.component';
+import { FollowProfileFollowingComponent } from './follow/follow-profile-following/follow-profile-following.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { TracksMonthlyTopComponent } from './tracks/tracks-monthly-top/tracks-mo
     ProfileComponent,
     ArtistMonthlyTopComponent,
     TracksMonthlyTopComponent,
+    PlaylistProfilePublicComponent,
+    FollowProfileFollowerComponent,
+    FollowProfileFollowingComponent,
   ],
   imports: [
     BrowserModule,
