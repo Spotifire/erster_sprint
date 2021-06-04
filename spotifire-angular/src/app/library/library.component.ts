@@ -9,7 +9,8 @@ import {SpotifyService} from '../services/spotify.service';
 })
 export class LibraryComponent implements OnInit {
   spotifyService: SpotifyService = new SpotifyService();
-  
+  code: string = new URLSearchParams(window.location.search).get('code');
+
   value = 1;
 
   // tslint:disable-next-line: ban-types
@@ -20,6 +21,7 @@ export class LibraryComponent implements OnInit {
 }
 
   ngOnInit(): void {
+    if (this.code) this.spotifyservice.login(this.code);
     // this.spotifyservice.getMyPlaylists();
   }
 

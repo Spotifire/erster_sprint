@@ -71,8 +71,11 @@ export class SpotifyService {
         (res.data.items.length)
 
         for (let i = 0; i < resArray.length; i++){
+          let url;
+          if (res.data.items[i].images.length > 0) url = res.data.items[i].images[0].url;
+
           resArray[i] = {name: res.data.items[i].name, creator: res.data.items[i].owner.display_name,
-            cover: res.data.items[i].images[0].url, id: res.data.items[i].id};
+            cover: url, id: res.data.items[i].id};
         }
 
         library.playlists = resArray;
@@ -239,4 +242,6 @@ export class SpotifyService {
 
     spotifyApi.play()
   }
+
+  loadProfile(){}
 }
