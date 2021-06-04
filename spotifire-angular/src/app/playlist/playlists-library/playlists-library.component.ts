@@ -12,10 +12,13 @@ export class PlaylistsLibraryComponent implements OnInit {
   playlists: Array<{name: String, creator: String, cover: String, id: String}>;
 
   constructor(private spotifyservice: SpotifyService){
-  spotifyservice.setLibraryPlaylists(this);
   }
 
 ngOnInit(): void {
-    // this.spotifyservice.getMyPlaylists();
+    this.load()
+  }
+
+  async load() {
+    this.playlists = await this.spotifyservice.getMyPlaylists();
   }
 }

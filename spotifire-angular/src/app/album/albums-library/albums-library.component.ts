@@ -11,10 +11,14 @@ export class AlbumsLibraryComponent implements OnInit {
   albums: Array<{name: String, artists: String, cover: String, album_type: String, id: String}>
 
   constructor(private spotifyService: SpotifyService) {
-    this.spotifyService.setLibraryAlbums(this)
+
   }
 
   ngOnInit(): void {
+    this.load()
   }
 
+  async load(){
+    this.albums = await this.spotifyService.getMyAlbums();
+  }
 }

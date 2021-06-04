@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SpotifyService} from "../../services/spotify.service";
 
 @Component({
   selector: 'app-artist-monthly-top',
@@ -7,20 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArtistMonthlyTopComponent implements OnInit {
 
-  artists: Array<{name: string, image: string, follower: string}> = [
-    {name: 'Artist 1', image: 'img', follower: '1212321'},
-    {name: 'Artist 2', image: 'img', follower: '1212321'},
-    {name: 'Artist 3', image: 'img', follower: '1212321'},
-    {name: 'Artist 4', image: 'img', follower: '1212321'},
-    {name: 'Artist 5', image: 'img', follower: '1212321'},
-    {name: 'Artist 6', image: 'img', follower: '1212321'},
-    {name: 'Artist 7', image: 'img', follower: '1212321'}
-  ];
+  artists: Array<{name: String, image: String, follower: Number, id: String}>
 
-  constructor() { }
 
-  ngOnInit(): void {
+  constructor(private spotifyService : SpotifyService) {
   }
 
+  ngOnInit(): void {
+    this.load()
+  }
+
+  async load(){
+    this.artists = await this.spotifyService.getMyArtists("short_term")
+  }
 
 }
