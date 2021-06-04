@@ -7,6 +7,8 @@ import {SpotifyService} from "../services/spotify.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  spotifyService: SpotifyService = new SpotifyService()
+  code: string = new URLSearchParams(window.location.search).get('code');
 
   constructor() { }
 
@@ -19,7 +21,7 @@ export class LoginComponent implements OnInit {
     '&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state'
 
   exec(){
-    new SpotifyService().login()
+    this.spotifyService.login(this.code)
   }
 
 }

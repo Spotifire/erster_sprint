@@ -41,20 +41,20 @@ export default class Auth {
     let refreshToken = localStorage.getItem("refreshToken");
 
     axios
-      .post("http://localhost:3001/refresh", {
+      .post("http://localhost:4201/refresh", {
         refreshToken,
       })
       .then(res => {
         this.accessToken = res.data.accessToken
         this.expiresIn = res.data.expiresIn
 
-        console.log(true)
+        console.log(res)
 
         localStorage.setItem("accessToken", this.accessToken)
       })
       .catch(() => {
         // @ts-ignore
-        window.location = "/"
+        //window.location = "/"
       })
   }
 }

@@ -1,9 +1,30 @@
 <div class="library-wrapper">
-        <a href="playlist">
-            <div class="box" *ngFor='let playlist of playlists'>
-                <div id="cover"><img title={{playlist.cover}}></div>
-                <div id="name"><h2>{{playlist.name}}</h2></div>
-                <div id="creator"><p>{{playlist.creator}}</p></div>
-            </div>
-        </a>
+  <div class="library-selector">
+
+        <input id="playlist" type="radio" name="modi" (click)="setValue(1)" checked>
+        <label class="check" for="playlist">Playlists</label>
+
+        <input id="podcast" type="radio" name="modi" (click)="setValue(2)">
+        <label class="check" for="podcast">Podcasts</label>
+
+        <input id="artist" type="radio" name="modi" (click)="setValue(3)">
+        <label class="check" for="artist">Artists</label>
+
+        <input id="album" type="radio" name="modi" (click)="setValue(4)">
+        <label class="check" for="album">Albums</label>
+  </div>
+  
+  <div class="choice" *ngIf="getValue() === 1">
+    <app-playlists-library></app-playlists-library>
+  </div>
+  <div class="choice" *ngIf="getValue() === 2">
+    <app-podcasts-library></app-podcasts-library>
+  </div>
+  <div class="choice" *ngIf="getValue() === 3">
+    <app-artists-library></app-artists-library>
+  </div>
+  <div class="choice" *ngIf="getValue() === 4">
+    <app-albums-library></app-albums-library>
+  </div>
 </div>
+

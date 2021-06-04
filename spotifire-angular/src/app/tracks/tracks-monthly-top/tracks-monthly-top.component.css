@@ -1,0 +1,61 @@
+.monthly-top-tracks-wrapper{
+    position: absolute;
+    top: 85vh;
+    margin-left: 8vh;
+    width: 130vh;
+    height: 33vh;
+    overflow: hidden;
+}
+
+.top-tracks-header{
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    background-color: rgba(255, 228, 196, 0); 
+}
+
+#header-text{
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 2vh;
+    font-size: 2.5vh;
+    color: white;
+}
+
+
+#see-all{
+    position: absolute;
+    left: 80%;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 14vh;
+    color: white;
+    font-size: 1.8vh;
+}
+
+.top-tracks-body{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 80%;
+    top: 20%;
+    background-color: rgba(240, 248, 255, 0.219);
+}
+
+th{
+    text-align: center;
+}
+
+#freespace{
+    position: absolute;
+    width: 1vh;
+    height: 1vh;
+    top: 150vh;
+    visibility: hidden;
+}

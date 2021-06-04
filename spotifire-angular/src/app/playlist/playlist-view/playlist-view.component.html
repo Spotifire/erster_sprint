@@ -1,0 +1,22 @@
+<div class="playlist-wrapper">
+    <div class="playlist-header">
+        <div id="playlist-image">
+            <img id="cover"src="{{playlistCover}}">
+        </div>
+        <div id="playlist-info">
+        <h2>Playlist</h2>
+        <h1>{{playListName}}</h1>
+        <h3>Creator - 13 Tracks - 8 min</h3>
+        </div>
+    </div>
+    <div class="playlist-body">
+        <div class="play-container" (click)="play()">
+            <img id="play" src="../../../assets/Play.png">
+        </div>
+        <div class="shuffle-container">
+            <img id="shuffle" src="../../../assets/Shuffle.png">
+        </div>
+
+        <app-playlist-songlist [songs]="songList.songs"></app-playlist-songlist>
+    </div>
+</div>

@@ -1,1 +1,3 @@
-<input type="text" name="searchStr" [(ngModel)]="searchStr" (keyup)="searchMusic()" placeholder="Search..." class="search-input">
+<form (ngSubmit)="searchMusic()">
+  <input type="text" name="searchStr" [(ngModel)]="searchStr" placeholder="Search..." class="search-input">
+</form>
