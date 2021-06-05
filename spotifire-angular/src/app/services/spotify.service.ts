@@ -253,4 +253,28 @@ export class SpotifyService {
 
     return profile.data.display_name;
   }
+
+  instantiatePlayer(){
+    let script = document.createElement('script');
+    script.src = "https://sdk.scdn.co/spotify-player.js";
+    document.body.appendChild(script);
+
+    let script2 = document.createElement('script');
+    script2.text = 
+    'window.onSpotifyWebPlaybackSDKReady = () => {'+
+      'var player = new Spotify.Player({'+
+        'name: \'Test1337\','+
+        'getOAuthToken: callback => {'+
+          '(\''+this.accessToken+'\');'+
+        '},'+
+        'volume: 0.5});'+
+      'console.log(player);'+
+      'player.connect().then(success => {'+
+        'if (success) {'+
+          'console.log(\'PlaybackSDK Success\');'+
+        '}'+
+      '});'+
+    '};';
+    document.body.appendChild(script2);
+  }
 }
