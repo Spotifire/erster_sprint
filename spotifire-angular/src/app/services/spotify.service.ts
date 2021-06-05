@@ -270,11 +270,35 @@ export class SpotifyService {
         'volume: 0.5});'+
       'console.log(player);'+
       'player.connect().then(success => {'+
-        'if (success) {'+
-          'console.log(\'PlaybackSDK Success\');'+
-        '}'+
+        'console.log(success);'+
       '});'+
+      'player.getCurrentState().then(state => {if (!state) {console.error(\'User is not playing music through the Web Playback SDK\');return;}let {current_track,next_tracks: [next_track]} = state.track_window;console.log(\'Currently Playing\', current_track);console.log(\'Playing Next\', next_track);});'+
     '};';
     document.body.appendChild(script2);
+  }
+
+  async connectPlayer(){
+    this.accessToken = localStorage.getItem('accessToken');
+
+    if (!this.accessToken) {
+      console.error('No viable Access Token.');
+      return;
+    }
+
+    const profile = await axios
+      .put("https://api.spotify.com/v1/me/player", {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + this.accessToken
+        },
+        device_ids:[
+          "Test1337"
+        ]
+    })
+  }
+
+  play(){
+
   }
 }

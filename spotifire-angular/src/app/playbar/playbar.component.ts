@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SpotifyService } from '../services/spotify.service';
 
 @Component({
   selector: 'app-playbar',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaybarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private spot:SpotifyService) { }
 
   ngOnInit(): void {
+  }
+
+  test(){
+    this.spot.connectPlayer();
   }
 
 }
