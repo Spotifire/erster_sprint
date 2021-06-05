@@ -470,7 +470,7 @@ export class SpotifyService {
         }
       })
 
-    if (artist.data.images[0].url) return artist.data.images[0].url;
+    if (artist.data.images.length > 0) return artist.data.images[0].url;
     else return null;
   }
 
