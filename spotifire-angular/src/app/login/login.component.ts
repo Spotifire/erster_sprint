@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   redirect_uri = 'http://localhost:4200'
   AUTH_URL = 'https://accounts.spotify.com/authorize?client_id=' + this.client_id + '&response_type=code&redirect_uri=' + this.redirect_uri +
     '&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20' +
-    'user-modify-playback-state%20user-top-read'
+    'user-modify-playback-state%20user-top-read%20user-follow-read'
 
   exec(){
     this.spotifyService.login(this.code)

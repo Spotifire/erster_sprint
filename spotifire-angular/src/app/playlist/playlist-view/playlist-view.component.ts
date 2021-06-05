@@ -30,7 +30,16 @@ export class PlaylistViewComponent implements OnInit {
 
     this.songList = new PlaylistSonglistComponent();
 
-    this.spotifyService.setSongList(this, playlistId);
+    this.load(playlistId)
+  }
+
+  async load(playlistId){
+    this.songList.songs = await this.spotifyService.getPlaylistTracks(playlistId);
+    this.playListName = await this.spotifyService.getPlaylistName(playlistId);
+    this.playlistCover = await this.spotifyService.getPlaylistCover(playlistId);
+    this.playlistCreator = await this.spotifyService.getPlaylistCreator(playlistId);
+    this.playlistTrackNumber = await this.spotifyService.getPlaylistTrackNumber(playlistId);
+    this.playlistDuration = await this.spotifyService.getPlaylistDuration(playlistId);
   }
 
   play(){

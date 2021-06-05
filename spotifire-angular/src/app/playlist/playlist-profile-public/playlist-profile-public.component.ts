@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-playlist-profile-public',
@@ -7,13 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaylistProfilePublicComponent implements OnInit {
 
-  public_playlists: Array<{name: String, creator: String, cover: String, id: String}> = [
-    {name: 'Playlist 1', creator: 'Creator', cover: 'img', id: '1'},
-    {name: 'Playlist 2', creator: 'Creator', cover: 'img', id: '1'},
-    {name: 'Playlist 3', creator: 'Creator', cover: 'img', id: '1'},
-    {name: 'Playlist 4', creator: 'Creator', cover: 'img', id: '1'},
-    {name: 'Playlist 5', creator: 'Creator', cover: 'img', id: '1'},
-  ]
+  @Input() public_playlists: Array<{name: String, creator: String, cover: String, public: Boolean, id: String}>;
 
   constructor() { }
 

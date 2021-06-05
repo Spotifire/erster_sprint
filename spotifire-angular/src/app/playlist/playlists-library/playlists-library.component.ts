@@ -9,7 +9,7 @@ import { SpotifyService } from '../../services/spotify.service';
 export class PlaylistsLibraryComponent implements OnInit {
 
   // tslint:disable-next-line: ban-types
-  playlists: Array<{name: String, creator: String, cover: String, id: String}>;
+  playlists: Array<{name: String, creator: String, cover: String, public: Boolean, id: String}>;
 
   constructor(private spotifyservice: SpotifyService){
   }

@@ -4,15 +4,15 @@
         <div id="see-all">view all</div>
     </div>
     <div class="following-user-body">
-        <div class="following-user-box" *ngFor='let user of followingUserObjects' >
-            <a [routerLink]="['/playlist', user.id]">
+        <div class="following-user-box" *ngFor='let artist of artists' >
+            <a [routerLink]="['/playlist', artist.id]">
             <div id="following-user-img">
-                <img id="following-user-picture">
+                <img id="following-user-picture" src="{{artist.image}}">
             </div>
             <div id="following-user-name">
-                {{user.name}}
+                {{artist.name}}
             </div>
         </a>
-        <div>
     </div>
+</div>
 </div>

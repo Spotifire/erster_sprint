@@ -7,9 +7,9 @@
     </div>
 
     <app-artist-monthly-top></app-artist-monthly-top>
-    <app-tracks-monthly-top></app-tracks-monthly-top>
-    <app-playlist-profile-public></app-playlist-profile-public>
-    <app-follow-profile-following></app-follow-profile-following>
+    <app-tracks-monthly-top [songs]="topTrackList.songs"></app-tracks-monthly-top>
+    <app-playlist-profile-public [public_playlists]="publicPlaylists.public_playlists" ></app-playlist-profile-public>
+    <app-follow-profile-following [artists]="followingArtist.artists"></app-follow-profile-following>
     <app-follow-profile-follower></app-follow-profile-follower>
 
     <div id="freespace"></div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-follow-profile-following',
@@ -6,14 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./follow-profile-following.component.css']
 })
 export class FollowProfileFollowingComponent implements OnInit {
+  @Input() artists: Array<{name: String, image: String, follower: Number, id: String}>
 
-  followingUserObjects: Array<{name: String, profile_img: String, id: String}> = [
-    {name: 'User 1', profile_img: 'img', id: 'id'},
-    {name: 'User 2', profile_img: 'img', id: 'id'},
-    {name: 'User 3', profile_img: 'img', id: 'id'},
-    {name: 'User 4', profile_img: 'img', id: 'id'},
-    {name: 'User 5', profile_img: 'img', id: 'id'},
-  ]
 
   constructor() { }
 
