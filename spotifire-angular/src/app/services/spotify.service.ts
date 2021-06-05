@@ -285,17 +285,16 @@ export class SpotifyService {
       return;
     }
 
-    const profile = await axios
-      .put("https://api.spotify.com/v1/me/player", {
+    const player = await axios
+      .get("https://api.spotify.com/v1/me/player/devices", {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + this.accessToken
-        },
-        device_ids:[
-          "Test1337"
-        ]
+        }
     })
+
+    console.log(player.data);
   }
 
   play(){
