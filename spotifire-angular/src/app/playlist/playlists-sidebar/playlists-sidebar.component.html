@@ -1,5 +1,7 @@
-<div class="box" *ngFor='let playlist of playlists'>
-    <a href="playlist">
-    <div id="name">{{playlist.name}}</div>
-</a>
+<div class="playWindow">
+  <div class="box" *ngFor='let playlist of playlists' >
+    <a [routerLink]="['/playlist', playlist.id]">
+      <div id="name">{{playlist.name}}</div>
+    </a>
+  </div>
 </div>
