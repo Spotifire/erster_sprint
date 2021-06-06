@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SpotifyPlayerService } from './services/spotify-player.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'spotifire-angular';
+
+  constructor(private spotifyplayer: SpotifyPlayerService){}
+
+  ngOnInit(){
+    this.spotifyplayer.instantiatePlayer();
+  }
 }
