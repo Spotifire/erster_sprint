@@ -36,19 +36,67 @@ export class SpotifyPlayerService {
     this.playerid = document.getElementById('player_id').title;
     console.log('id: '+this.playerid)
 
-    const profile = await axios
+    let spotifyApi = new SpotifyWebApi({
+      clientId: '454d352b3fd84985bea141355d73c17b',
+    });
+    spotifyApi.setAccessToken(this.accessToken);
+    spotifyApi.transferMyPlayback([this.playerid]);
+    /* const profile = await axios
     .put("https://api.spotify.com/v1/me/player", {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + this.accessToken,
+        'Authorization': 'Bearer ' + this.accessToken
       },
       json:{
         'device_ids':[
           ''+this.playerid
         ]
       }
-    })
+    }) */
+  }
+
+  async startOrStopPlayer(){
+    let playing = false;
+    this.accessToken = localStorage.getItem('accessToken');
+
+    if (!this.accessToken) {
+      console.error('No viable Access Token.');
+      return;
+    }
+
+    let spotifyApi = new SpotifyWebApi({
+      clientId: '454d352b3fd84985bea141355d73c17b',
+    });
+    spotifyApi.setAccessToken(this.accessToken);
+
+    await spotifyApi.getMyCurrentPlaybackState()
+    .then(function(data) {
+      // Output items
+      if (data.body && data.body.is_playing) {
+        playing = data.body.is_playing;
+        console.log(data.body.is_playing);
+      } else {
+        console.log("User is not playing anything, or doing so in private.");
+      }
+    }, function(err) {
+      console.log('Something went wrong!', err);
+    });
+
+    if(playing){
+      spotifyApi.pause();
+    } else {
+      spotifyApi.play();
+    }
+
+    /* const profile = await axios
+    .put("https://api.spotify.com/v1/me/player/play", {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.accessToken
+      }
+    }) */
   }
 
   /* 
@@ -99,21 +147,6 @@ export class SpotifyPlayerService {
       '\tplayer.connect();\n'+
     '};';
     
-    /* 'window.onSpotifyWebPlaybackSDKReady = () => {'+
-      'var player = new Spotify.Player({'+
-        'name: \'Test1337\','+
-        'getOAuthToken: callback => {'+
-          '(\''+this.accessToken+'\');'+
-        '},'+
-        'volume: 0.5});'+
-      'console.log(player);'+
-      'player.connect().then(success => {'+
-        'console.log(success);'+
-      '});'+
-      'player.getCurrentState().then(state => {if (!state) {console.error(\'User is not playing music through the Web Playback SDK\');return;}let {current_track,next_tracks: [next_track]} = state.track_window;console.log(\'Currently Playing\', current_track);console.log(\'Playing Next\', next_track);});'+
-    '};'; */
     document.body.appendChild(script2);
-
-    return;
   }
 }

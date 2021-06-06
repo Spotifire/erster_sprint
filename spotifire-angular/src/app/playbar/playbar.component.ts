@@ -17,4 +17,8 @@ export class PlaybarComponent implements OnInit {
     this.spot.connectPlayer();
   }
 
+  start_stop(){
+    this.spot.startOrStopPlayer();
+  }
+
 }
