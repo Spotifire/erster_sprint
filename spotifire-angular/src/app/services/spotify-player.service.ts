@@ -9,7 +9,7 @@ import axios from "axios";
 })
 export class SpotifyPlayerService {
   auth: Auth = new Auth();
-  playerid: any;
+  playerid: String;
 
   accessToken = localStorage.getItem('accessToken');
 
@@ -19,7 +19,52 @@ export class SpotifyPlayerService {
     this.auth.refresh();
   }
 
-  async instantiatePlayer(){
+  // Player Instantion Method
+  instantiatePlayer(){
+    this.createPlayerScripts();
+  }
+
+  // Player Connection Method
+  async connectPlayer(){
+    this.accessToken = localStorage.getItem('accessToken');
+
+    if (!this.accessToken) {
+      console.error('No viable Access Token.');
+      return;
+    }
+
+    this.playerid = document.getElementById('player_id').title;
+    console.log('id: '+this.playerid)
+
+    const profile = await axios
+    .put("https://api.spotify.com/v1/me/player", {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.accessToken,
+      },
+      json:{
+        'device_ids':[
+          ''+this.playerid
+        ]
+      }
+    })
+  }
+
+  /* 
+  
+    This method creates scripts which instantiate a spotify player
+    instance by using the Spotify Web Player SDK.
+  
+  */
+  private createPlayerScripts(){
+    this.accessToken = localStorage.getItem('accessToken');
+
+    if (!this.accessToken) {
+      console.error('No viable Access Token.');
+      return;
+    }
+
     let script = document.createElement('script');
     script.src = "https://sdk.scdn.co/spotify-player.js";
     document.body.appendChild(script);
@@ -27,7 +72,6 @@ export class SpotifyPlayerService {
     let script2 = document.createElement('script');
     script2.id = 'WebPlayerScript';
     script2.text = 
-    'var player_id;\n'+
     'window.onSpotifyWebPlaybackSDKReady = () => {\n'+
       '\tconst token = \''+this.accessToken+'\';\n'+
       '\tconst player = new Spotify.Player({\n'+
@@ -70,29 +114,6 @@ export class SpotifyPlayerService {
     '};'; */
     document.body.appendChild(script2);
 
-    this.playerid = document.getElementById('player_id').title;
-  }
-
-  async connectPlayer(){
-    this.accessToken = localStorage.getItem('accessToken');
-
-    if (!this.accessToken) {
-      console.error('No viable Access Token.');
-      return;
-    }
-
-    const player = await axios
-    .get("https://api.spotify.com/v1/me/player/devices", {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + this.accessToken
-        }
-    })
-    console.log(player.data);
-  }
-
-  play(){
-
+    return;
   }
 }
